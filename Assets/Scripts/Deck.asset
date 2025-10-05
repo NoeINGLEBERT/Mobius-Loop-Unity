@@ -1,0 +1,202 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5064c1e93476b342b4c0fc97cb4f81e, type: 3}
+  m_Name: Deck
+  m_EditorClassIdentifier: 
+  cards:
+  - _frontFace:
+    - E
+    _backFace:
+    - H
+    - W
+    - L
+    _isFront: 1
+    _frontSuit: 3
+    _backSuit: 1
+  - _frontFace:
+    - Y
+    _backFace:
+    - L
+    - K
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - I
+    - W
+    - G
+    - L
+    _backFace:
+    - T
+    - O
+    _isFront: 1
+    _frontSuit: 4
+    _backSuit: 2
+  - _frontFace:
+    - M
+    - S
+    _backFace:
+    - E
+    - V
+    - U
+    _isFront: 0
+    _frontSuit: 2
+    _backSuit: 3
+  - _frontFace:
+    - B
+    - O
+    _backFace:
+    - D
+    - V
+    _isFront: 1
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - C
+    - G
+    - T
+    - I
+    _backFace:
+    - P
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - M
+    - U
+    - E
+    _backFace:
+    - C
+    - D
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - E
+    - Y
+    - I
+    _backFace:
+    - M
+    - R
+    _isFront: 0
+    _frontSuit: 4
+    _backSuit: 2
+  - _frontFace:
+    - N
+    - J
+    _backFace:
+    - T
+    _isFront: 0
+    _frontSuit: 3
+    _backSuit: 1
+  - _frontFace:
+    - '?'
+    _backFace:
+    - Z
+    _isFront: 0
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - '?'
+    _backFace:
+    - J
+    - G
+    _isFront: 0
+    _frontSuit: 3
+    _backSuit: 1
+  - _frontFace:
+    - N
+    _backFace:
+    - B
+    - K
+    - R
+    _isFront: 0
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - R
+    - I
+    _backFace:
+    - J
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 3
+  - _frontFace:
+    - B
+    - P
+    - R
+    - G
+    _backFace:
+    - S
+    _isFront: 1
+    _frontSuit: 4
+    _backSuit: 1
+  - _frontFace:
+    - Y
+    - V
+    - N
+    - R
+    _backFace:
+    - '?'
+    _isFront: 1
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - U
+    _backFace:
+    - R
+    - X
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - E
+    - S
+    - P
+    - T
+    _backFace:
+    - B
+    - A
+    _isFront: 0
+    _frontSuit: 4
+    _backSuit: 2
+  - _frontFace:
+    - A
+    - V
+    _backFace:
+    - K
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 3
+  - _frontFace:
+    - P
+    - L
+    - A
+    _backFace:
+    - O
+    - C
+    - I
+    _isFront: 0
+    _frontSuit: 4
+    _backSuit: 2
+  - _frontFace:
+    - D
+    - P
+    - I
+    - R
+    _backFace:
+    - N
+    - L
+    - E
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 4
