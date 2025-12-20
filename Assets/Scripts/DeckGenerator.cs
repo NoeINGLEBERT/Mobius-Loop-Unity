@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,7 +18,6 @@ public class DeckGenerator : MonoBehaviour
 
     private List<LetterData> scrabbleLetters;
     private List<char> weightedLetterPool;
-    private Dictionary<char, int> letterPoints;
 
     void Awake()
     {
@@ -83,14 +82,14 @@ public class DeckGenerator : MonoBehaviour
                 .Distinct()
                 .Where(c =>
                 {
-                    if (c == '?') return false; // skip blanks for now
+                    if (c == '-') return false; // skip blanks for now
 
-        // A card cannot have the same letter twice � on either face
-        if (front.Contains(c.ToString()) || back.Contains(c.ToString()))
-            return false;
+                    // A card cannot have the same letter twice — on either face
+                    if (front.Contains(c.ToString()) || back.Contains(c.ToString()))
+                        return false;
 
-        int pts = letterPoints[c];
-        return totalPoints + pts <= targetPoints && sidePoints + pts <= targetPoints;
+                    int pts = LetterRules.GetLetterScore(c);
+                    return totalPoints + pts <= targetPoints && sidePoints + pts <= targetPoints;
                 })
                 .ToList();
 
@@ -100,7 +99,7 @@ public class DeckGenerator : MonoBehaviour
                 // Only add a blank if this face has no letters at all
                 if (side.Count == 0)
                 {
-                    side.Add("?");
+                    side.Add("-");
                     // no points added since blanks = 0
                 }
                 // If both faces are impossible to continue, break to avoid infinite loop
@@ -123,7 +122,7 @@ public class DeckGenerator : MonoBehaviour
 
             // Pick a valid letter weighted by frequency (but not duplicates)
             char chosen = validLetters[Random.Range(0, validLetters.Count)];
-            int points = letterPoints[chosen];
+            int points = LetterRules.GetLetterScore(chosen);
 
             side.Add(chosen.ToString());
             if (addToFront)
@@ -133,8 +132,8 @@ public class DeckGenerator : MonoBehaviour
         }
 
         // Safety fallback: ensure both sides have something
-        if (front.Count == 0) front.Add("?");
-        if (back.Count == 0) back.Add("?");
+        if (front.Count == 0) front.Add("-");
+        if (back.Count == 0) back.Add("-");
 
         // --- Random Suit Assignment ---
         Suit[] redSuits = { Suit.Heart, Suit.Diamond };
@@ -170,7 +169,7 @@ public class DeckGenerator : MonoBehaviour
     {
         scrabbleLetters = new List<LetterData>()
         {
-            new LetterData('?', 0, 2),
+            new LetterData('-', 0, 2),
             new LetterData('E', 1, 12), new LetterData('A', 1, 9), new LetterData('I', 1, 9),
             new LetterData('O', 1, 8), new LetterData('N', 1, 6), new LetterData('R', 1, 6),
             new LetterData('T', 1, 6), new LetterData('L', 1, 4), new LetterData('S', 1, 4),
@@ -184,13 +183,11 @@ public class DeckGenerator : MonoBehaviour
 
         // Build weighted pool and point dictionary
         weightedLetterPool = new List<char>();
-        letterPoints = new Dictionary<char, int>();
 
         foreach (var l in scrabbleLetters)
         {
             for (int i = 0; i < l.count; i++)
                 weightedLetterPool.Add(l.letter);
-            letterPoints[l.letter] = l.points;
         }
     }
 

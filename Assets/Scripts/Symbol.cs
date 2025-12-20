@@ -30,7 +30,7 @@ public class Symbol : MonoBehaviour
     public void SetSymbol(string letterChar, Suit suit)
     {
         letterText.text = letterChar;
-        scoreText.text = GetScrabbleScore(letterChar).ToString();
+        scoreText.text = LetterRules.GetLetterScore(letterChar).ToString();
         SetSuit(suit);
     }
 
@@ -66,25 +66,6 @@ public class Symbol : MonoBehaviour
                 suitImage.sprite = null;
                 scoreText.color = Color.clear;
                 break;
-        }
-    }
-
-    private int GetScrabbleScore(string letter)
-    {
-        if (string.IsNullOrEmpty(letter))
-            return 0;
-
-        char c = char.ToUpperInvariant(letter[0]);
-        switch (c)
-        {
-            case 'A': case 'E': case 'I': case 'O': case 'N': case 'R': case 'T': case 'L': case 'S': case 'U': return 1;
-            case 'D': case 'G': return 2;
-            case 'B': case 'C': case 'M': case 'P': return 3;
-            case 'F': case 'H': case 'V': case 'W': case 'Y': return 4;
-            case 'K': return 5;
-            case 'J': case 'X': return 8;
-            case 'Q': case 'Z': return 10;
-            default: return 0;
         }
     }
 }

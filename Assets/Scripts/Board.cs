@@ -23,4 +23,23 @@ public class Board : MonoBehaviour
             cells[i].transform.rotation = Quaternion.Euler(eulerAngles);
         }
     }
+
+    public void GetCellTransform(int cellIndex, out Vector3 position, out Quaternion rotation)
+    {
+        int index = cellIndex % cellNumber;
+        int nextIndex = (cellIndex + 1) % cellNumber;
+
+        Transform cell = cells[index].transform;
+        Transform nextCell = cells[nextIndex].transform;
+
+        // Forward direction = toward the next cell
+        Vector3 forward = (nextCell.position - cell.position).normalized;
+
+        // Alternate "up" depending on lap parity because its a Möbius strip
+        bool evenLap = ((cellIndex / cellNumber) % 2) == 0;
+        Vector3 up = evenLap ? cell.up : -cell.up;
+
+        position = cell.position;
+        rotation = Quaternion.LookRotation(forward, up);
+    }
 }

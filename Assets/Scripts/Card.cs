@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public CardData cardData;
+
+    public event Action OnCardChanged;
+    public static event Action OnFaceSwap;
 
     [SerializeField] GameObject symbolPrefab;
     [SerializeField] Transform frontPanel;
@@ -11,9 +15,16 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+
+    private Transform handTransform;
+    private Vector2 handPosition;
+
     private Transform originalParent;
     private Vector2 originalPosition;
+
     private bool droppedInZone = false;
+
+    public event Action<Card> OnDiscardRequested;
 
     void Awake()
     {
@@ -25,6 +36,10 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     void Start()
     {
         LoadFace();
+
+        // Store hand transform
+        handTransform = transform.parent;
+        handPosition = rectTransform.anchoredPosition;
     }
 
     void LoadFace()
@@ -45,6 +60,9 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         cardData._isFront = !cardData._isFront;
         LoadFace();
+
+        OnCardChanged?.Invoke();
+        OnFaceSwap?.Invoke();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -52,6 +70,15 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         // Remember where it came from
         originalParent = transform.parent;
         originalPosition = rectTransform.anchoredPosition;
+
+        // If coming from a drop zone, clear it
+        DropZone zone = GetComponentInParent<DropZone>();
+        if (zone != null)
+        {
+            zone.ClearCard();
+        }
+
+        droppedInZone = false;
 
         // Allow raycasts to go through this card (so drop zones can detect it)
         canvasGroup.blocksRaycasts = false;
@@ -71,16 +98,45 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
         if (!droppedInZone)
         {
-            // Snap back to hand
-            transform.SetParent(originalParent);
-            rectTransform.anchoredPosition = originalPosition;
+            ReturnToHand();
         }
+    }
 
-        droppedInZone = false; // reset for next drag
+
+    public void ReturnToParent(Card card)
+    {
+        // Snap back to card parent
+        transform.SetParent(card.originalParent);
+        rectTransform.anchoredPosition = card.originalPosition;
+
+        DropZone zone = card.originalParent.GetComponent<DropZone>();
+        if (zone != null)
+        {
+            zone.SetCard(this);
+        }
+    }
+
+    public void ReturnToHand()
+    {
+        // Snap back to hand
+        transform.SetParent(handTransform);
+        rectTransform.anchoredPosition = handPosition;
     }
 
     public void SetDroppedInZone(bool value)
     {
         droppedInZone = value;
+    }
+
+    public void Discard()
+    {
+        // If in a drop zone, clear it properly
+        DropZone zone = GetComponentInParent<DropZone>();
+        if (zone != null)
+        {
+            zone.ClearCard();
+        }
+
+        OnDiscardRequested?.Invoke(this);
     }
 }
