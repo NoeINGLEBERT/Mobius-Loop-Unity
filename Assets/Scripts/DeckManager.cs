@@ -33,17 +33,21 @@ public class DeckManager : MonoBehaviour
     {
         while (handCards.Count < handSize)
         {
-            DrawOne();
+            if (!DrawOne())
+                break;
         }
     }
 
-    private void DrawOne()
+    private bool DrawOne()
     {
         if (drawPile.Count == 0)
             RefillFromDiscard();
 
         if (drawPile.Count == 0)
-            return; // no cards left at all
+        {
+            GameOver();
+            return false;
+        }
 
         CardData data = drawPile[0];
         drawPile.RemoveAt(0);
@@ -53,8 +57,12 @@ public class DeckManager : MonoBehaviour
         card.cardData = data;
 
         card.OnDiscardRequested += HandleDiscard;
+        card.OnDestroyRequested += HandleDestroy;
 
         handCards.Add(card);
+        card.PlayDrawAnimation();
+
+        return true;
     }
 
     private void HandleDiscard(Card card)
@@ -63,6 +71,17 @@ public class DeckManager : MonoBehaviour
 
         handCards.Remove(card);
         discardPile.Add(card.cardData);
+
+        Destroy(card.gameObject);
+
+        DrawUpToHandSize();
+    }
+
+    private void HandleDestroy(Card card)
+    {
+        card.OnDestroyRequested -= HandleDestroy;
+
+        handCards.Remove(card);
 
         Destroy(card.gameObject);
 
@@ -91,5 +110,10 @@ public class DeckManager : MonoBehaviour
             int j = Random.Range(i, list.Count);
             (list[i], list[j]) = (list[j], list[i]);
         }
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("GAME OVER");
     }
 }

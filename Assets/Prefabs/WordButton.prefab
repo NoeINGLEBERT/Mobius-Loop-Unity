@@ -306,6 +306,10 @@ MonoBehaviour:
   wordText: {fileID: 5248176885960361617}
   scoreText: {fileID: 5324454789187597602}
   button: {fileID: 4018495828982899597}
+  appearDuration: 0.15
+  disappearDuration: 0.5
+  clickDisappearDuration: 1
+  clickPunchScale: 1.5
 --- !u!114 &4018495828982899597
 MonoBehaviour:
   m_ObjectHideFlags: 0

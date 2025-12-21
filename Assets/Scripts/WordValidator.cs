@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class WordValidator : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Transform resultsPanel;
     [SerializeField] private WordButton wordButtonPrefab;
+    [SerializeField] private float consumeDelay = 0.08f;
 
     [Header("Gameplay")]
     [SerializeField] private Pawn pawn;
@@ -181,24 +183,35 @@ public class WordValidator : MonoBehaviour
     private void ClearResults()
     {
         foreach (GameObject go in spawnedButtons)
-            Destroy(go);
+        {
+            WordButton wb = go.GetComponent<WordButton>();
+            if (wb != null)
+                wb.AnimateOutAndDestroy();
+            else
+                Destroy(go);
+        }
 
         spawnedButtons.Clear();
     }
 
     public void ConsumeCards()
     {
+        StartCoroutine(ConsumeCardsRoutine());
+    }
+
+    private IEnumerator ConsumeCardsRoutine()
+    {
+        // Prevent new validations during consumption
+        ClearResults();
+
         foreach (DropZone zone in zones)
         {
             if (!zone.HasCard())
                 continue;
 
-            Card card = zone.GetCard();
+            zone.GetCard().Discard();
 
-            zone.ClearCard();   // visual / logical clear
-            card.Discard();    // triggers DeckManager
+            yield return new WaitForSeconds(consumeDelay);
         }
-
-        ClearResults();
     }
 }

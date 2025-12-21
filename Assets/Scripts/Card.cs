@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
+using System.Collections;
+using TMPro;
+
 
 public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -11,6 +14,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     [SerializeField] GameObject symbolPrefab;
     [SerializeField] Transform frontPanel;
+    [SerializeField] private TMP_Text backLettersText;
 
     private Canvas canvas;
     private RectTransform rectTransform;
@@ -25,6 +29,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private bool droppedInZone = false;
 
     public event Action<Card> OnDiscardRequested;
+    public event Action<Card> OnDestroyRequested;
 
     void Awake()
     {
@@ -44,15 +49,36 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     void LoadFace()
     {
+        // Clear current face visuals
         foreach (Transform child in frontPanel)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (string letter in cardData._isFront ? cardData._frontFace : cardData._backFace)
+        // Select which face to render
+        var faceLetters = cardData._isFront
+            ? cardData._frontFace
+            : cardData._backFace;
+
+        var backLetters = cardData._isFront
+            ? cardData._backFace
+            : cardData._frontFace;
+
+        var suit = cardData._isFront
+            ? cardData._frontSuit
+            : cardData._backSuit;
+
+        // Render symbols
+        foreach (string letter in faceLetters)
         {
             GameObject newSymbol = Instantiate(symbolPrefab, frontPanel);
-            newSymbol.GetComponent<Symbol>().SetSymbol(letter, cardData._isFront ? cardData._frontSuit : cardData._backSuit);
+            newSymbol.GetComponent<Symbol>().SetSymbol(letter, suit);
+        }
+
+        // Write back-face letters as comma-separated text
+        if (backLettersText != null)
+        {
+            backLettersText.text = string.Join(", ", backLetters);
         }
     }
 
@@ -130,13 +156,100 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void Discard()
     {
-        // If in a drop zone, clear it properly
-        DropZone zone = GetComponentInParent<DropZone>();
-        if (zone != null)
+        StartCoroutine(DiscardAnim());
+    }
+
+    public void Destroy()
+    {
+        StartCoroutine(DestroyAnim());
+    }
+
+
+    // ANIMATIONS
+
+    public void PlayDrawAnimation(float duration = 0.25f)
+    {
+        StartCoroutine(DrawAnim(duration));
+    }
+
+    private IEnumerator DrawAnim(float duration)
+    {
+        float t = 0f;
+
+        Vector3 startScale = Vector3.one * 0.8f;
+        Vector3 endScale = Vector3.one;
+
+        canvasGroup.alpha = 0f;
+        rectTransform.localScale = startScale;
+
+        while (t < 1f)
         {
-            zone.ClearCard();
+            t += Time.deltaTime / duration;
+
+            rectTransform.localScale = Vector3.Lerp(startScale, endScale, t);
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, t);
+
+            yield return null;
+        }
+
+        rectTransform.localScale = endScale;
+        canvasGroup.alpha = 1f;
+    }
+
+    private IEnumerator DiscardAnim()
+    {
+        float duration = 0.25f;
+        float t = 0f;
+
+        Vector2 startPos = rectTransform.anchoredPosition;
+        Vector2 endPos = startPos + Vector2.down * 80f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+
+            rectTransform.anchoredPosition =
+                Vector2.Lerp(startPos, endPos, t);
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, t);
+
+            yield return null;
         }
 
         OnDiscardRequested?.Invoke(this);
+    }
+
+    private IEnumerator DestroyAnim()
+    {
+        float shakeDuration = 0.15f;
+        float shrinkDuration = 0.15f;
+
+        Vector2 originalPos = rectTransform.anchoredPosition;
+
+        // Shake
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / shakeDuration;
+
+            rectTransform.anchoredPosition =
+                originalPos + UnityEngine.Random.insideUnitCircle * 8f;
+
+            yield return null;
+        }
+
+        rectTransform.anchoredPosition = originalPos;
+
+        // Shrink
+        t = 0f;
+        Vector3 startScale = rectTransform.localScale;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / shrinkDuration;
+            rectTransform.localScale = Vector3.Lerp(startScale, Vector3.zero, t);
+            yield return null;
+        }
+
+        OnDestroyRequested?.Invoke(this);
     }
 }
