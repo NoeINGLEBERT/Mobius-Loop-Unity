@@ -40,7 +40,7 @@ public class WordButton : MonoBehaviour
     void Awake()
     {
         rect = GetComponent<RectTransform>();
-        canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        canvasGroup = GetComponent<CanvasGroup>();
 
         rect.localScale = Vector3.zero;
         canvasGroup.alpha = 0f;

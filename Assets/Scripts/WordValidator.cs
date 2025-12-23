@@ -15,6 +15,7 @@ public class WordValidator : MonoBehaviour
     [SerializeField] private WordButton wordButtonPrefab;
     [SerializeField] private float consumeDelay = 0.08f;
 
+
     [Header("Gameplay")]
     [SerializeField] private Pawn pawn;
 
@@ -180,10 +181,47 @@ public class WordValidator : MonoBehaviour
         spawnedButtons.Add(button.gameObject);
     }
 
+    private Transform CreateConsumedPanel()
+    {
+        // Clone results panel
+        GameObject panelGO = Instantiate(
+            resultsPanel.gameObject,
+            resultsPanel.parent
+        );
+
+        panelGO.name = "ConsumedResultsPanel";
+
+        Transform panel = panelGO.transform;
+
+        // Clear layout-driven size changes
+        RectTransform rt = panel as RectTransform;
+        RectTransform src = resultsPanel as RectTransform;
+
+        rt.anchorMin = src.anchorMin;
+        rt.anchorMax = src.anchorMax;
+        rt.pivot = src.pivot;
+        rt.anchoredPosition = src.anchoredPosition;
+        rt.sizeDelta = src.sizeDelta;
+        rt.localScale = Vector3.one;
+
+        // Remove existing children (clone copies them)
+        foreach (Transform child in panel)
+            Destroy(child.gameObject);
+
+        return panel;
+    }
+
     private void ClearResults()
     {
+        if (spawnedButtons.Count == 0)
+            return;
+
+        Transform consumedPanel = CreateConsumedPanel();
+
         foreach (GameObject go in spawnedButtons)
         {
+            go.transform.SetParent(consumedPanel, worldPositionStays: false);
+
             WordButton wb = go.GetComponent<WordButton>();
             if (wb != null)
                 wb.AnimateOutAndDestroy();
@@ -192,6 +230,18 @@ public class WordValidator : MonoBehaviour
         }
 
         spawnedButtons.Clear();
+
+        // Destroy the panel after animations are done
+        StartCoroutine(DestroyPanelWhenEmpty(consumedPanel));
+    }
+
+    private IEnumerator DestroyPanelWhenEmpty(Transform panel)
+    {
+        // Wait until all buttons are gone
+        while (panel.childCount > 0)
+            yield return null;
+
+        Destroy(panel.gameObject);
     }
 
     public void ConsumeCards()

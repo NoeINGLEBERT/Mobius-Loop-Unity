@@ -115,6 +115,18 @@ public class Pawn : MonoBehaviour
 
             playerData.cellIndex = toIndex;
         }
+
+        yield return ResolveCellEffect();
+    }
+
+    private IEnumerator ResolveCellEffect()
+    {
+        Cell cell = board.GetCell(playerData.cellIndex);
+        if (cell == null)
+            yield break;
+
+        bool evenLap = board.IsEvenLap(playerData.cellIndex);
+        yield return cell.Activate(this, evenLap);
     }
 
     private IEnumerator Hop(int fromIndex, int toIndex, float duration)

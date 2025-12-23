@@ -202,7 +202,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         float t = 0f;
 
         Vector2 startPos = rectTransform.anchoredPosition;
-        Vector2 endPos = startPos + Vector2.down * 80f;
+        Vector2 endPos = startPos + Vector2.up * 80f;
 
         while (t < 1f)
         {

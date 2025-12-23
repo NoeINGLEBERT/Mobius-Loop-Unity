@@ -36,10 +36,21 @@ public class Board : MonoBehaviour
         Vector3 forward = (nextCell.position - cell.position).normalized;
 
         // Alternate "up" depending on lap parity because its a Möbius strip
-        bool evenLap = ((cellIndex / cellNumber) % 2) == 0;
+        bool evenLap = IsEvenLap(cellIndex);
         Vector3 up = evenLap ? cell.up : -cell.up;
 
         position = cell.position;
         rotation = Quaternion.LookRotation(forward, up);
+    }
+
+    public Cell GetCell(int cellIndex)
+    {
+        int index = cellIndex % cellNumber;
+        return cells[index].GetComponent<Cell>();
+    }
+
+    public bool IsEvenLap(int cellIndex)
+    {
+        return ((cellIndex / cellNumber) % 2) == 0;
     }
 }
