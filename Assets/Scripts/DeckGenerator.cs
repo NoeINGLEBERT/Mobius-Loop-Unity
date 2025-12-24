@@ -50,7 +50,7 @@ public class DeckGenerator : MonoBehaviour
         Debug.Log($"Generated deck with {generatedDeck.cards.Length} cards.");
     }
 
-    private CardData GenerateCard(int targetPoints)
+    public CardData GenerateCard(int targetPoints)
     {
         List<string> front = new List<string>();
         List<string> back = new List<string>();

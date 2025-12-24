@@ -64,6 +64,30 @@ public class Pawn : MonoBehaviour
 
     private void Enqueue(PawnCommand command)
     {
+        // Cancel out consecutive swaps
+        if (command.type == PawnCommandType.Swap && commandQueue.Count > 0)
+        {
+            // Get the last command in the queue
+            PawnCommand[] commands = commandQueue.ToArray();
+            PawnCommand lastCommand = commands[^1];
+
+            if (lastCommand.type == PawnCommandType.Swap)
+            {
+                // Remove the last swap instead of enqueueing a new one
+                Queue<PawnCommand> newQueue = new();
+                for (int i = 0; i < commands.Length - 1; i++)
+                    newQueue.Enqueue(commands[i]);
+
+                commandQueue.Clear();
+                foreach (var cmd in newQueue)
+                    commandQueue.Enqueue(cmd);
+
+                // Optional: early exit, don't enqueue the new swap
+                return;
+            }
+        }
+
+        // Normal enqueue
         commandQueue.Enqueue(command);
 
         if (!isExecuting)

@@ -16,7 +16,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         // If another card is already here, send it back to hand
         if (currentCard != null)
         {
-            currentCard.ReturnToParent(card);
+            currentCard.GetComponent<CardDragHandler>().ReturnToParent(card.GetComponent<CardDragHandler>());
             ClearCard();
         }
 
@@ -42,7 +42,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         cardRect.localRotation = Quaternion.identity;
         cardRect.localScale = Vector3.one;
 
-        card.SetDroppedInZone(true);
+        card.GetComponent<CardDragHandler>().MarkDroppedInZone();
 
         currentCard = card;
 

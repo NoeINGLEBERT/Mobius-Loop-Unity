@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class DeckManager : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private int handSize = 5;
     [SerializeField] private Deck deck;
 
+    [Header("Draw Settings")]
+    [SerializeField] private float refillDelay = 0.25f;   // retriggerable delay
+    [SerializeField] private float drawInterval = 0.1f;   // time between each card
+
     private readonly List<CardData> drawPile = new();
     private readonly List<CardData> discardPile = new();
     private readonly List<Card> handCards = new();
+
+    private Coroutine refillCoroutine;
 
     void Start()
     {
@@ -22,20 +29,42 @@ public class DeckManager : MonoBehaviour
         drawPile.AddRange(deck.cards);
         Shuffle(drawPile);
 
-        DrawUpToHandSize();
+        TriggerRefillHand();
     }
 
     // =========================
     // DRAW / DISCARD
     // =========================
 
-    private void DrawUpToHandSize()
+    // Call this externally to refill hand, retriggerable
+    public void TriggerRefillHand()
     {
+        if (refillCoroutine != null)
+            StopCoroutine(refillCoroutine);
+
+        refillCoroutine = StartCoroutine(RefillHandDelayed());
+    }
+
+    private IEnumerator RefillHandDelayed()
+    {
+        // Wait retriggerable delay
+        float timer = refillDelay;
+        while (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // Draw missing cards one by one
         while (handCards.Count < handSize)
         {
             if (!DrawOne())
                 break;
+
+            yield return new WaitForSeconds(drawInterval);
         }
+
+        refillCoroutine = null; // finished
     }
 
     private bool DrawOne()
@@ -53,11 +82,9 @@ public class DeckManager : MonoBehaviour
         drawPile.RemoveAt(0);
 
         GameObject go = Instantiate(cardPrefab, handArea);
+        go.AddComponent<CardDragHandler>();
         Card card = go.GetComponent<Card>();
         card.cardData = data;
-
-        card.OnDiscardRequested += HandleDiscard;
-        card.OnDestroyRequested += HandleDestroy;
 
         handCards.Add(card);
         card.PlayDrawAnimation();
@@ -65,7 +92,7 @@ public class DeckManager : MonoBehaviour
         return true;
     }
 
-    private void HandleDiscard(Card card)
+    public void HandleDiscard(Card card)
     {
         card.OnDiscardRequested -= HandleDiscard;
 
@@ -74,10 +101,10 @@ public class DeckManager : MonoBehaviour
 
         Destroy(card.gameObject);
 
-        DrawUpToHandSize();
+        TriggerRefillHand();
     }
 
-    private void HandleDestroy(Card card)
+    public void HandleDestroy(Card card)
     {
         card.OnDestroyRequested -= HandleDestroy;
 
@@ -85,7 +112,7 @@ public class DeckManager : MonoBehaviour
 
         Destroy(card.gameObject);
 
-        DrawUpToHandSize();
+        TriggerRefillHand();
     }
 
     // =========================
@@ -115,5 +142,10 @@ public class DeckManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("GAME OVER");
+    }
+
+    void Update()
+    {
+        Debug.Log($"Hand: {handCards.Count} | Draw Pile: {drawPile.Count} | Discard Pile: {discardPile.Count}");
     }
 }
