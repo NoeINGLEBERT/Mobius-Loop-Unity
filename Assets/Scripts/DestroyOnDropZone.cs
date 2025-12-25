@@ -5,6 +5,8 @@ public class DestroyOnDropZone : MonoBehaviour
 {
     private DropZone zone;
 
+    [SerializeField] private DeckManager deckManager;
+
     private void Awake()
     {
         zone = GetComponent<DropZone>();
@@ -26,5 +28,7 @@ public class DestroyOnDropZone : MonoBehaviour
             return;
 
         zone.GetCard().Destroy();
+
+        deckManager.RefillHand();
     }
 }

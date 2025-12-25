@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2588473516992465322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2519120126341314848}
+  - component: {fileID: 3919485116648819533}
+  m_Layer: 0
+  m_Name: WordValidator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2519120126341314848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2588473516992465322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 627.4531, y: 963.8039, z: 662.0717}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3919485116648819533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2588473516992465322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4388850523e30b440a113303348e4afd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneCount: 5
+  zonePrefab: {fileID: 693879816035042605, guid: 28e96e403ef962d4196df8a7478a2589, type: 3}
+  zonesParent: {fileID: 0}
+  dictionaryFileName: dictionary.txt
+  resultsPanel: {fileID: 0}
+  wordButtonPrefab: {fileID: 2843786478222334960, guid: b1184407bf51bfb46ab8240f79b08566, type: 3}
+  consumeDelay: 0.1
+  pawn: {fileID: 0}

@@ -29,6 +29,8 @@ public class Pawn : MonoBehaviour
     private readonly Queue<PawnCommand> commandQueue = new();
     private bool isExecuting;
 
+    public bool IsIdle => !isExecuting && commandQueue.Count == 0;
+
     void Start()
     {
         SnapToCell(playerData.cellIndex);

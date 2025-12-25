@@ -95,6 +95,8 @@ public class Card : MonoBehaviour
 
     public void Destroy()
     {
+        OnDestroyRequested?.Invoke(this);
+
         StartCoroutine(DestroyAnim());
     }
 
@@ -184,6 +186,6 @@ public class Card : MonoBehaviour
             yield return null;
         }
 
-        OnDestroyRequested?.Invoke(this);
+        Destroy(gameObject);
     }
 }

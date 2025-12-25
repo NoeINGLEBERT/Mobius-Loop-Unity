@@ -20,7 +20,7 @@ public class DeckManager : MonoBehaviour
     private readonly List<CardData> discardPile = new();
     private readonly List<Card> handCards = new();
 
-    private Coroutine refillCoroutine;
+    public int HandCount => handCards.Count;
 
     void Start()
     {
@@ -29,32 +29,20 @@ public class DeckManager : MonoBehaviour
         drawPile.AddRange(deck.cards);
         Shuffle(drawPile);
 
-        TriggerRefillHand();
+        RefillHand();
     }
 
     // =========================
     // DRAW / DISCARD
     // =========================
 
-    // Call this externally to refill hand, retriggerable
-    public void TriggerRefillHand()
+    public void RefillHand()
     {
-        if (refillCoroutine != null)
-            StopCoroutine(refillCoroutine);
-
-        refillCoroutine = StartCoroutine(RefillHandDelayed());
+        StartCoroutine(RefillHandDelayed());
     }
 
     private IEnumerator RefillHandDelayed()
     {
-        // Wait retriggerable delay
-        float timer = refillDelay;
-        while (timer > 0f)
-        {
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-
         // Draw missing cards one by one
         while (handCards.Count < handSize)
         {
@@ -63,8 +51,6 @@ public class DeckManager : MonoBehaviour
 
             yield return new WaitForSeconds(drawInterval);
         }
-
-        refillCoroutine = null; // finished
     }
 
     private bool DrawOne()
@@ -100,8 +86,6 @@ public class DeckManager : MonoBehaviour
         discardPile.Add(card.cardData);
 
         Destroy(card.gameObject);
-
-        TriggerRefillHand();
     }
 
     public void HandleDestroy(Card card)
@@ -109,10 +93,6 @@ public class DeckManager : MonoBehaviour
         card.OnDestroyRequested -= HandleDestroy;
 
         handCards.Remove(card);
-
-        Destroy(card.gameObject);
-
-        TriggerRefillHand();
     }
 
     // =========================
@@ -142,10 +122,5 @@ public class DeckManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("GAME OVER");
-    }
-
-    void Update()
-    {
-        Debug.Log($"Hand: {handCards.Count} | Draw Pile: {drawPile.Count} | Discard Pile: {discardPile.Count}");
     }
 }

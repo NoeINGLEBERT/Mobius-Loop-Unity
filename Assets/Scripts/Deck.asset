@@ -14,50 +14,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards:
   - _frontFace:
-    - C
-    - A
-    - G
-    - D
+    - W
     _backFace:
+    - D
+    - F
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - E
     - O
-    - L
+    - S
+    _backFace:
+    - N
+    - A
+    - K
+    _isFront: 0
+    _frontSuit: 3
+    _backSuit: 1
+  - _frontFace:
+    - D
+    - B
+    - U
+    _backFace:
+    - P
+    - N
+    _isFront: 1
+    _frontSuit: 3
+    _backSuit: 2
+  - _frontFace:
+    - E
+    - K
+    - N
+    _backFace:
+    - S
+    - T
+    - R
     _isFront: 0
     _frontSuit: 4
     _backSuit: 1
   - _frontFace:
-    - K
-    - O
+    - T
+    - C
     _backFace:
-    - N
+    - L
+    - B
     - U
-    - G
+    - O
     _isFront: 0
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - '-'
-    _backFace:
-    - J
-    - D
-    _isFront: 1
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - P
-    _backFace:
-    - K
-    - I
-    - N
-    _isFront: 1
-    _frontSuit: 4
-    _backSuit: 2
-  - _frontFace:
-    - P
-    - W
-    - S
-    - R
-    _backFace:
-    - A
-    _isFront: 1
     _frontSuit: 2
     _backSuit: 3
