@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3562360980827107432}
   - component: {fileID: 2437401772264573715}
   - component: {fileID: 5448893445393877139}
+  - component: {fileID: 4564194923088605845}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 5448893445393877139}
+  deckManager: {fileID: 0}
 --- !u!114 &5448893445393877139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +63,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 120d66e56a6b85f49ac98743c77464ff, type: 2}
   board: {fileID: 0}
+--- !u!114 &4564194923088605845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803792992995829838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6bd26a50393f84d8c9df162c37a31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: 1
 --- !u!1 &3305181440540868601
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,8 @@ public class CardChoiceCellEffect : MonoBehaviour, ICellEffect
 
     public IEnumerator Activate(Pawn pawn)
     {
+        if (!pawn.GetComponent<PlayerActor>()) yield break;
+
         // Find the Canvas automatically
         Canvas canvas = FindFirstObjectByType<Canvas>();
         if (canvas == null)

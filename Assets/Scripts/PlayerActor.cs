@@ -8,6 +8,16 @@ public class PlayerActor : MonoBehaviour, ITurnActor
 
     public Pawn Pawn => pawn;
 
+    private void OnEnable()
+    {
+        Card.OnFaceSwap += Pawn.Swap;
+    }
+
+    private void OnDisable()
+    {
+        Card.OnFaceSwap -= Pawn.Swap;
+    }
+
     public IEnumerator TakeTurn()
     {
         // === TURN START ===

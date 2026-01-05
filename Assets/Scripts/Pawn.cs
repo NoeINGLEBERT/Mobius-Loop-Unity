@@ -36,16 +36,6 @@ public class Pawn : MonoBehaviour
         SnapToCell(playerData.cellIndex);
     }
 
-    private void OnEnable()
-    {
-        Card.OnFaceSwap += Swap;
-    }
-
-    private void OnDisable()
-    {
-        Card.OnFaceSwap -= Swap;
-    }
-
     // =========================
     // PUBLIC API
     // =========================

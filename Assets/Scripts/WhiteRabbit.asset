@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bc533c978f2a645a526857a23eeb59, type: 3}
+  m_Name: WhiteRabbit
+  m_EditorClassIdentifier: 
+  dialogues:
+  - speaker: 1
+    dialogueText: "Um\u2026 Excuse me, Mr. Rabbit\u2026 Do you happen to know\u2026
+      how one might open this door?"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 2
+    dialogueText: "Oh, my! Late! Always late! I haven\u2019t a moment! But\u2014wait\u2026
+      do you have something for me first, hmm? I'm not quite ready yet, you see."
+    choicesTexts:
+    - '[GLOVES]'
+    - '[FAN]'
+    - '[!]'
+    - No, I have nothing
+    answersIndexes: 02000000030000000500000006000000
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 2
+    dialogueText: "Gloves! Ah, delicate things\u2026 soft, silken\u2026 yes, yes.
+      But doors, dear girl\u2026 doors are fussy creatures. They open only to those\u2026
+      small enough."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 2
+    dialogueText: "Tiny, like a crumb beneath the teacup. One must shrink to whisper
+      the lock awake. Yes, yes, quite so! Oh, bother! I\u2019ve dawdled too long\u2014late,
+      late, always late! Off I go!"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 2
+    dialogueText: "A fan! How delightful! Fluttering, whispering\u2026 Yes, yes,
+      that will do. Take this!"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 2
+    dialogueText: Now, with this curious little contraption in hand, it should help
+      you open the door. Doors are fussy creatures, you see...
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 2
+    dialogueText: "But with a bit of cleverness\u2014and this in your grasp\u2014they
+      may just step aside for you! Oh my, how the time has flown while we\u2019ve
+      been talking! Late, late, always late! I must be off!"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 2
+    dialogueText: "Hmmm\u2026 that will not do\u2026 not at all! Curious, curious,
+      but utterly useless! I cannot linger with such nonsense. Perhaps try again,
+      but quickly\u2014time waits for no one!"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 2
+    dialogueText: "Nothing? Oh dear! Then I shan\u2019t linger. Late, you see! Very,
+      very late!"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
