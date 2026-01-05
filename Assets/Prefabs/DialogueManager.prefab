@@ -45,4 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Events: []
-  letterDelay: 0.03
+  currentSpeaker: {fileID: 0}
+  currentDialogueComponent: {fileID: 0}
+  letterDelay: 0.015
+  fadeDuration: 0.3
+  dialogueCanvasGroup: {fileID: 0}
+  dialogueText: {fileID: 0}
+  skipButton: {fileID: 0}
+  skipButtonCanvasGroup: {fileID: 0}
+  choicePanel: {fileID: 0}
+  choicePanelCanvasGroup: {fileID: 0}
+  choicePrefab: {fileID: 4950232489527328855, guid: daa90eb115773f047a1270fc8475ff73, type: 3}
+  choiceContainer: {fileID: 0}
+  wordDropZonePrefab: {fileID: 4299937590986838276, guid: a637d5ab79b4b194b966f0525e5218b4, type: 3}

@@ -28,9 +28,9 @@ public class WordButton : MonoBehaviour
     [SerializeField] private float clickDisappearDuration = 0.22f;
     [SerializeField] private float clickPunchScale = 1.1f;
 
-    private WordResult result;
+    public WordResult result;
     private Pawn pawn;
-    private WordValidator validator;
+    public WordValidator validator;
 
     private RectTransform rect;
     private CanvasGroup canvasGroup;
@@ -46,7 +46,7 @@ public class WordButton : MonoBehaviour
         canvasGroup.alpha = 0f;
     }
 
-    public void Setup(WordResult result, Pawn pawn, WordValidator validator)
+    public void Setup(WordResult result, Pawn pawn, WordValidator validator, bool draggable)
     {
         this.result = result;
         this.pawn = pawn;
@@ -56,7 +56,30 @@ public class WordButton : MonoBehaviour
         scoreText.text = result.score.ToString();
 
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(OnClicked);
+
+        if (!draggable)
+        {
+            // Only allow clicking if not draggable
+            button.onClick.AddListener(OnClicked);
+            button.interactable = true;
+        }
+        else
+        {
+            // Disable click if draggable
+            button.interactable = false;
+        }
+
+        // Enable/disable dragging dynamically
+        if (draggable)
+        {
+            if (GetComponent<WordDragHandler>() == null)
+                gameObject.AddComponent<WordDragHandler>();
+        }
+        else
+        {
+            WordDragHandler handler = GetComponent<WordDragHandler>();
+            if (handler != null) Destroy(handler);
+        }
 
         StartCoroutine(Appear());
     }

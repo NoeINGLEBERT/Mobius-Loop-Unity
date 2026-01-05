@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc912b9b0bb62e445b77725b2a044d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckSize: 5
+  deckSize: 100
   cardTargetPoints: 10
   maxLettersPerSide: 4
   generatedDeck: {fileID: 11400000, guid: 64e271799c79ac449bdb6f4af7c30b16, type: 2}

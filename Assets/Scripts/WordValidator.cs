@@ -177,7 +177,7 @@ public class WordValidator : MonoBehaviour
             resultsPanel
         );
 
-        button.Setup(result, pawn, this);
+        button.Setup(result, pawn, this, DialogueManager.Instance.currentSpeaker != null);
         spawnedButtons.Add(button.gameObject);
     }
 

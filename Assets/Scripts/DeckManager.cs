@@ -4,6 +4,8 @@ using System.Collections;
 
 public class DeckManager : MonoBehaviour
 {
+    public static DeckManager Instance { get; private set; }
+
     [Header("References")]
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private Transform handArea;
@@ -21,6 +23,16 @@ public class DeckManager : MonoBehaviour
     private readonly List<Card> handCards = new();
 
     public int HandCount => handCards.Count;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start()
     {

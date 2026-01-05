@@ -24,11 +24,11 @@ MonoBehaviour:
     dialogueText: "Oh, my! Late! Always late! I haven\u2019t a moment! But\u2014wait\u2026
       do you have something for me first, hmm? I'm not quite ready yet, you see."
     choicesTexts:
-    - '[GLOVES]'
+    - '[GLOVE]'
     - '[FAN]'
     - '[!]'
     - No, I have nothing
-    answersIndexes: 02000000030000000500000006000000
+    answersIndexes: 02000000040000000700000008000000
     dialogueEnd: 0
     eventName: 
   - speaker: 2
@@ -73,8 +73,12 @@ MonoBehaviour:
     dialogueText: "Hmmm\u2026 that will not do\u2026 not at all! Curious, curious,
       but utterly useless! I cannot linger with such nonsense. Perhaps try again,
       but quickly\u2014time waits for no one!"
-    choicesTexts: []
-    answersIndexes: 
+    choicesTexts:
+    - '[GLOVE]'
+    - '[FAN]'
+    - '[!]'
+    - No, I have nothing
+    answersIndexes: 02000000040000000700000008000000
     dialogueEnd: 0
     eventName: 
   - speaker: 2

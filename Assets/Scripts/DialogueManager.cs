@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     public event Action<Speaker> OnDialogueDisplayed;
 
     private Coroutine typingCoroutine;
-    [SerializeField] private float letterDelay = 0.02f;
+    [SerializeField] private float letterDelay = 0.01f;
     [SerializeField] private float fadeDuration = 0.3f;
 
     [SerializeField] private CanvasGroup dialogueCanvasGroup;
@@ -39,6 +39,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private CanvasGroup choicePanelCanvasGroup;
     [SerializeField] private GameObject choicePrefab;
     [SerializeField] private Transform choiceContainer;
+    [SerializeField] private GameObject wordDropZonePrefab;
 
     private void Awake()
     {
@@ -142,27 +143,112 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private bool IsBracketChoice(string text)
+    {
+        return text.StartsWith("[") && text.EndsWith("]");
+    }
+
     private void GenerateChoices(DialogueEntry dialogue)
     {
-        // Clear previous choices
+        // Clear previous UI
         foreach (Transform child in choiceContainer)
             Destroy(child.gameObject);
 
-        // Generate new choices
+        bool hasBracketChoices = false;
+
         for (int i = 0; i < dialogue.choicesTexts.Length; i++)
         {
+            if (IsBracketChoice(dialogue.choicesTexts[i]))
+            {
+                hasBracketChoices = true;
+                break;
+            }
+        }
+
+        if (hasBracketChoices)
+        {
+            GenerateInputChoice(dialogue);
+        }
+
+        GenerateButtonChoices(dialogue);
+    }
+
+    private void GenerateButtonChoices(DialogueEntry dialogue)
+    {
+        for (int i = 0; i < dialogue.choicesTexts.Length; i++)
+        {
+            if (IsBracketChoice(dialogue.choicesTexts[i]))
+                continue;
+
             GameObject choiceGO = Instantiate(choicePrefab, choiceContainer);
             TMP_Text choiceText = choiceGO.GetComponentInChildren<TMP_Text>();
-            if (choiceText != null) choiceText.text = dialogue.choicesTexts[i];
+            if (choiceText != null)
+                choiceText.text = dialogue.choicesTexts[i];
 
             int index = i;
             Button button = choiceGO.GetComponent<Button>();
             if (button != null)
+            {
                 button.onClick.AddListener(() =>
                 {
                     currentDialogueComponent.TryDialogue(dialogue.answersIndexes[index]);
                 });
+            }
         }
+    }
+
+    private void GenerateInputChoice(DialogueEntry dialogue)
+    {
+        GameObject zoneGO = Instantiate(wordDropZonePrefab, choiceContainer);
+        WordDropZone zone = zoneGO.GetComponent<WordDropZone>();
+
+        Dictionary<string, int> inputMap = new Dictionary<string, int>();
+        int fallbackIndex = -1;
+
+        for (int i = 0; i < dialogue.choicesTexts.Length; i++)
+        {
+            string raw = dialogue.choicesTexts[i];
+            string key = raw.Trim('[', ']').ToLowerInvariant();
+
+            if (key == "!")
+            {
+                fallbackIndex = dialogue.answersIndexes[i];
+            }
+            else
+            {
+                inputMap[key] = dialogue.answersIndexes[i];
+            }
+        }
+
+        zone.OnZoneChanged += () =>
+        {
+            if (!zone.HasWord())
+                return;
+
+            WordButton word = zone.GetWord();
+            string playerInput = word.result.word.ToLowerInvariant();
+
+            word.validator.ConsumeCards();
+
+            int nextIndex;
+
+            if (inputMap.TryGetValue(playerInput, out nextIndex))
+            {
+                currentDialogueComponent.TryDialogue(nextIndex);
+            }
+            else if (fallbackIndex != -1)
+            {
+                currentDialogueComponent.TryDialogue(fallbackIndex);
+            }
+            else
+            {
+                Debug.LogWarning("[Dialogue] No fallback [!] choice defined.");
+            }
+
+            zone.UnbindAll();
+        };
+
+        DeckManager.Instance.RefillHand();
     }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup cg, float from, float to, float duration, Action onComplete = null)
