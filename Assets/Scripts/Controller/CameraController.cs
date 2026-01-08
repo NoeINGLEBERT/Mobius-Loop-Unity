@@ -59,18 +59,6 @@ public class CameraController : MonoBehaviour
 
     void HandleRotation()
     {
-        if (rotating)
-        {
-            float mx = Input.GetAxis("Mouse X");
-            float my = Input.GetAxis("Mouse Y");
-
-            yaw += mx * yawSpeed * Time.deltaTime;
-            pitch -= my * pitchSpeed * Time.deltaTime;
-            pitch = Mathf.Clamp(pitch, pitchLimits.x, pitchLimits.y);
-
-            UpdateCameraTransform();
-        }
-
         if (Input.GetMouseButtonDown(rotateMouseButton))
         {
             if (EventSystem.current != null &&
@@ -78,17 +66,33 @@ public class CameraController : MonoBehaviour
                 return;
 
             rotating = true;
-            Cursor.lockState = CursorLockMode.Locked;
+
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
         }
 
         if (Input.GetMouseButtonUp(rotateMouseButton))
         {
             rotating = false;
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+
+        if (!rotating)
+            return;
+
+        float mx = Input.GetAxis("Mouse X");
+        float my = Input.GetAxis("Mouse Y");
+
+        yaw += mx * yawSpeed * Time.deltaTime;
+        pitch -= my * pitchSpeed * Time.deltaTime;
+        pitch = Mathf.Clamp(pitch, pitchLimits.x, pitchLimits.y);
+
+        UpdateCameraTransform();
     }
+
+
 
     // =========================
     // ZOOM

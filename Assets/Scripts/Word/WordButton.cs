@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
 public struct WordResult
@@ -16,7 +17,7 @@ public struct WordResult
     }
 }
 
-public class WordButton : MonoBehaviour
+public class WordButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] TMP_Text wordText;
     [SerializeField] TMP_Text scoreText;
@@ -37,6 +38,9 @@ public class WordButton : MonoBehaviour
 
     private bool exiting = false;
 
+    public static event System.Action<string> OnWordHovered;
+    public static event System.Action OnWordUnhovered;
+
     void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -44,6 +48,16 @@ public class WordButton : MonoBehaviour
 
         rect.localScale = Vector3.zero;
         canvasGroup.alpha = 0f;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnWordHovered?.Invoke(result.word);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        OnWordUnhovered?.Invoke();
     }
 
     public void Setup(WordResult result, Pawn pawn, WordValidator validator, bool draggable)

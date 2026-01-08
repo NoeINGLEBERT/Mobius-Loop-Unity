@@ -120,6 +120,9 @@ GameObject:
   - component: {fileID: 8375465697477587754}
   - component: {fileID: 4864403384970772772}
   - component: {fileID: 3510264108401823375}
+  - component: {fileID: 5051572498729476541}
+  - component: {fileID: 8858614468137576749}
+  - component: {fileID: 8007405652230286228}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Untagged
@@ -185,3 +188,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: 2
+  dialogue:
+    speaker: 0
+    dialogueText: 
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+--- !u!114 &5051572498729476541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397483978516216611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c631e7cf6577d4ab385f1433445e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pawn: {fileID: 4864403384970772772}
+  npcDialogueEffect: {fileID: 8007405652230286228}
+--- !u!114 &8858614468137576749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397483978516216611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534d8f95ac0fc5f48bed06772b9c4940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTable: {fileID: 11400000, guid: 25b1fc77fc662ed4995113f9fa1b6855, type: 2}
+  dialoguePoolSize: 1
+  startingIndex: 0
+  currentIndex: 0
+  lastEventPriority: 0
+--- !u!114 &8007405652230286228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397483978516216611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b204c7429d35414aa5a776320632e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueComponent: {fileID: 8858614468137576749}

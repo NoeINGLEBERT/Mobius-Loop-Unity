@@ -29,4 +29,16 @@ public class Cell : MonoBehaviour
         if (effect != null)
             yield return effect.Activate(pawn);
     }
+    public ICellEffect GetEffect(bool evenLap)
+    {
+        return evenLap ? evenEffect : oddEffect;
+    }
+
+    public void SetEffect(bool evenLap, ICellEffect effect)
+    {
+        if (evenLap)
+            evenEffect = effect;
+        else
+            oddEffect = effect;
+    }
 }

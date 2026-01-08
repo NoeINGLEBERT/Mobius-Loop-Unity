@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public enum Suit
 {
@@ -24,8 +25,47 @@ public class Symbol : MonoBehaviour
     [SerializeField] private Sprite clubSprite;
     [SerializeField] private Sprite spadeSprite;
 
-    private Suit currentSuit = Suit.None;
-    private string letter;
+    [Header("Pulse")]
+    [SerializeField] private float pulseScale = 1.2f;
+    [SerializeField] private float pulseSpeed = 6f;
+
+    private Coroutine pulseRoutine;
+    private Vector3 baseScale;
+
+    void Awake()
+    {
+        baseScale = transform.localScale;
+    }
+
+    public string Letter => letterText.text;
+
+    public void StartPulse()
+    {
+        if (pulseRoutine != null) return;
+        pulseRoutine = StartCoroutine(Pulse());
+    }
+
+    public void StopPulse()
+    {
+        if (pulseRoutine == null) return;
+
+        StopCoroutine(pulseRoutine);
+        pulseRoutine = null;
+        transform.localScale = baseScale;
+    }
+
+    private IEnumerator Pulse()
+    {
+        float t = 0f;
+
+        while (true)
+        {
+            t += Time.deltaTime * pulseSpeed;
+            float s = 1f + Mathf.Sin(t) * (pulseScale - 1f);
+            transform.localScale = baseScale * s;
+            yield return null;
+        }
+    }
 
     public void SetSymbol(string letterChar, Suit suit)
     {
@@ -36,8 +76,6 @@ public class Symbol : MonoBehaviour
 
     private void SetSuit(Suit suit)
     {
-        currentSuit = suit;
-
         if (suitImage == null) return;
 
         switch (suit)

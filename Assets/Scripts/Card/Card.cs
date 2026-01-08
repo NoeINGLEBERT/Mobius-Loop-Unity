@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using System;
 using System.Collections;
 using TMPro;
+using System.Collections.Generic;
 
 
 public class Card : MonoBehaviour
@@ -32,6 +33,11 @@ public class Card : MonoBehaviour
     {
         LoadFace();
         RegisterWithDeckManager();
+    }
+
+    public List<Symbol> GetSymbols()
+    {
+        return new List<Symbol>(frontPanel.GetComponentsInChildren<Symbol>());
     }
 
     void RegisterWithDeckManager()

@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c4bc016b054824fa3f40428214b979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  evenLapEffect: {fileID: 4953517096301183578}
-  oddLapEffect: {fileID: 4953517096301183578}
+  evenLapEffect: {fileID: 2762634281452230124}
+  oddLapEffect: {fileID: 2762634281452230124}
 --- !u!114 &4953517096301183578
 MonoBehaviour:
   m_ObjectHideFlags: 0

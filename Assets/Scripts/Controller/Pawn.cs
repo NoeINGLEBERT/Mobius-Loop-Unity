@@ -23,13 +23,15 @@ public struct PawnCommand
 }
 public class Pawn : MonoBehaviour
 {
-    [SerializeField] private PlayerData playerData;
-    [SerializeField] private Board board;
+    [SerializeField] public PlayerData playerData;
+    [SerializeField] public Board board;
 
     private readonly Queue<PawnCommand> commandQueue = new();
     private bool isExecuting;
 
     public bool IsIdle => !isExecuting && commandQueue.Count == 0;
+
+    public event System.Action<Cell> OnCellResolved;
 
     void Start()
     {
@@ -142,7 +144,10 @@ public class Pawn : MonoBehaviour
             yield break;
 
         bool evenLap = board.IsEvenLap(playerData.cellIndex);
+        
         yield return cell.Activate(this, evenLap);
+
+        OnCellResolved?.Invoke(cell);
     }
 
     private IEnumerator Hop(int fromIndex, int toIndex, float duration)

@@ -23,6 +23,8 @@ public class WordValidator : MonoBehaviour
     private DropZone[] zones;
     private readonly List<GameObject> spawnedButtons = new();
 
+    private readonly List<Symbol> pulsingSymbols = new();
+
     private void Awake()
     {
         dictionary = new WordDictionary();
@@ -38,8 +40,10 @@ public class WordValidator : MonoBehaviour
 
     private void OnEnable()
     {
-        if (zones == null)
-            return;
+        WordButton.OnWordHovered += HandleWordHovered;
+        WordButton.OnWordUnhovered += ClearPulses;
+
+        if (zones == null) return;
 
         foreach (DropZone zone in zones)
             zone.OnZoneChanged += Validate;
@@ -47,8 +51,10 @@ public class WordValidator : MonoBehaviour
 
     private void OnDisable()
     {
-        if (zones == null)
-            return;
+        WordButton.OnWordHovered -= HandleWordHovered;
+        WordButton.OnWordUnhovered -= ClearPulses;
+
+        if (zones == null) return;
 
         foreach (DropZone zone in zones)
             zone.OnZoneChanged -= Validate;
@@ -263,5 +269,63 @@ public class WordValidator : MonoBehaviour
 
             yield return new WaitForSeconds(consumeDelay);
         }
+    }
+
+    private void HandleWordHovered(string word)
+    {
+        ClearPulses();
+
+        int wordIndex = 0;
+
+        foreach (DropZone zone in zones)
+        {
+            if (!zone.HasCard())
+                continue;
+
+            if (wordIndex >= word.Length)
+                break;
+
+            Card card = zone.GetCard();
+
+            // Determine which letters this zone can contribute
+            string[] zoneLetters = card.cardData._isFront ? card.cardData._frontFace : card.cardData._backFace;
+
+            // If this zone only has "-" it contributes NOTHING
+            bool contributesLetter = false;
+            foreach (string l in zoneLetters)
+            {
+                if (l != "-" && l != "")
+                {
+                    contributesLetter = true;
+                    break;
+                }
+            }
+
+            if (!contributesLetter)
+                continue; // DO NOT advance wordIndex
+
+            string targetLetter = word[wordIndex].ToString();
+
+            foreach (Symbol symbol in card.GetSymbols())
+            {
+                if (symbol.Letter == targetLetter)
+                {
+                    symbol.StartPulse();
+                    pulsingSymbols.Add(symbol);
+                    break;
+                }
+            }
+
+            // ONLY advance when a letter was consumed
+            wordIndex++;
+        }
+    }
+
+    private void ClearPulses()
+    {
+        foreach (Symbol symbol in pulsingSymbols)
+            symbol.StopPulse();
+
+        pulsingSymbols.Clear();
     }
 }
