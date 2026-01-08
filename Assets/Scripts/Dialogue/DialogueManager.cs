@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private CanvasGroup dialogueCanvasGroup;
     [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private TMP_Text speakerNameText;
 
     public event Action<bool> OnDialogueSkipped;
 
@@ -69,6 +70,11 @@ public class DialogueManager : MonoBehaviour
         currentSpeaker = speaker;
         displayedLetters = 0;
         UpdateText(0);
+
+        if (speakerNameText != null)
+        {
+            speakerNameText.text = speaker.displayName; // or speaker.name
+        }
 
         // Disable skip button and choice panel immediately
         skipButtonCanvasGroup.alpha = 0f;

@@ -11,6 +11,13 @@ public struct Reaction
     public int newDialoguePoolSize;
 }
 
+[System.Serializable]
+public class ReactionEntry
+{
+    public string events;           // "EventA, EventB"
+    public Reaction[] reactions;
+}
+
 public class DialogueComponent : MonoBehaviour
 {
     [Header("Dialogue Data")]
@@ -23,7 +30,7 @@ public class DialogueComponent : MonoBehaviour
     public int lastEventPriority;
 
     [Header("Reactions")]
-    [SerializeField] private Dictionary<string, Reaction[]> reactions = new Dictionary<string, Reaction[]>();
+    [SerializeField] private List<ReactionEntry> reactions = new();
 
     #region Dialogue Flow
 
@@ -41,14 +48,13 @@ public class DialogueComponent : MonoBehaviour
 
     public void HandleEventNotify(string Event)
     {
-        foreach (KeyValuePair<string, Reaction[]> pair in reactions)
+        foreach (ReactionEntry entry in reactions)
         {
             bool triggerReaction = false;
 
-            string[] parsedEvents = pair.Key.Split(',');
+            string[] parsedEvents = entry.events.Split(',');
 
-            triggerReaction = System.Array.Exists(parsedEvents, e => e == Event);
-
+            triggerReaction = System.Array.Exists(parsedEvents, e => e.Trim() == Event);
 
             foreach (string parsedEvent in parsedEvents)
             {
@@ -69,14 +75,12 @@ public class DialogueComponent : MonoBehaviour
 
             if (triggerReaction)
             {
-                foreach(Reaction reaction in pair.Value)
+                foreach (Reaction reaction in entry.reactions)
                 {
                     if (reaction.priority > lastEventPriority)
                     {
                         startingIndex = reaction.newStartingIndex;
-
                         dialoguePoolSize = reaction.newDialoguePoolSize;
-
                         lastEventPriority = reaction.priority;
                     }
                 }

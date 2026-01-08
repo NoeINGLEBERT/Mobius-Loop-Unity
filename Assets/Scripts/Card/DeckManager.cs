@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 public class DeckManager : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class DeckManager : MonoBehaviour
     [Header("Draw Settings")]
     [SerializeField] private float refillDelay = 0.25f;   // retriggerable delay
     [SerializeField] private float drawInterval = 0.1f;   // time between each card
+
+    [Header("UI")]
+    [SerializeField] private TMP_Text deckCountText;
+    [SerializeField] private TMP_Text discardCountText;
+    [SerializeField] private TMP_Text sanityText;
 
     private readonly List<CardData> drawPile = new();
     private readonly List<CardData> discardPile = new();
@@ -41,6 +47,7 @@ public class DeckManager : MonoBehaviour
         drawPile.AddRange(deck.cards);
         Shuffle(drawPile);
 
+        UpdateUI();
         RefillHand();
     }
 
@@ -87,6 +94,7 @@ public class DeckManager : MonoBehaviour
         handCards.Add(card);
         card.PlayDrawAnimation();
 
+        UpdateUI();
         return true;
     }
 
@@ -98,6 +106,7 @@ public class DeckManager : MonoBehaviour
         discardPile.Add(card.cardData);
 
         Destroy(card.gameObject);
+        UpdateUI();
     }
 
     public void HandleDestroy(Card card)
@@ -105,6 +114,7 @@ public class DeckManager : MonoBehaviour
         card.OnDestroyRequested -= HandleDestroy;
 
         handCards.Remove(card);
+        UpdateUI();
     }
 
     // =========================
@@ -120,6 +130,7 @@ public class DeckManager : MonoBehaviour
         discardPile.Clear();
 
         Shuffle(drawPile);
+        UpdateUI();
     }
 
     private void Shuffle(List<CardData> list)
@@ -131,8 +142,28 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    private void UpdateUI()
+    {
+        int deckCount = drawPile.Count;
+        int discardCount = discardPile.Count;
+        int sanity = deckCount + discardCount;
+
+        if (deckCountText)
+            deckCountText.text = deckCount.ToString();
+
+        if (discardCountText)
+            discardCountText.text = discardCount.ToString();
+
+        if (sanityText)
+        {
+            sanityText.text = sanity.ToString() + " cards left";
+
+            sanityText.color = sanity > 10 ? Color.white : Color.red;
+        }
+    }
+
     private void GameOver()
     {
-        Debug.Log("GAME OVER");
+        GameStateManager.Instance.TriggerDefeat();
     }
 }

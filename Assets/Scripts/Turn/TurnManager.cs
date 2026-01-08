@@ -21,6 +21,20 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         Debug.Log("TURN MANAGER STARTED");
+        StartCoroutine(WaitForDeckThenStart());
+    }
+
+    private IEnumerator WaitForDeckThenStart()
+    {
+        // Wait until DeckManager exists
+        while (DeckManager.Instance == null)
+            yield return null;
+
+        // Wait until deck is populated
+        while (DeckManager.Instance.HandCount == 0)
+            yield return null;
+
+        Debug.Log("[TURN] Deck ready, starting turns");
         StartCoroutine(TurnLoop());
     }
 

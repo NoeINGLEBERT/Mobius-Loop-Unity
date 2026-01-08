@@ -195,6 +195,7 @@ MonoBehaviour:
     answersIndexes: 
     dialogueEnd: 0
     eventName: 
+  displayName: WHITE RABBIT
 --- !u!114 &5051572498729476541
 MonoBehaviour:
   m_ObjectHideFlags: 0

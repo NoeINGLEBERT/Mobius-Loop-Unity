@@ -8,6 +8,8 @@ public class Speaker : MonoBehaviour
 
     public DialogueEntry dialogue;
 
+    public string displayName;
+
     private void Start()
     {
         DialogueManager.Instance.speakers.Add(character, this);

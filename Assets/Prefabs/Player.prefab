@@ -76,6 +76,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: 1
+  dialogue:
+    speaker: 0
+    dialogueText: 
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  displayName: ALICE
 --- !u!1 &3305181440540868601
 GameObject:
   m_ObjectHideFlags: 0

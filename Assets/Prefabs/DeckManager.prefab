@@ -51,6 +51,9 @@ MonoBehaviour:
   deck: {fileID: 11400000, guid: 64e271799c79ac449bdb6f4af7c30b16, type: 2}
   refillDelay: 0.25
   drawInterval: 0.1
+  deckCountText: {fileID: 0}
+  discardCountText: {fileID: 0}
+  sanityText: {fileID: 0}
 --- !u!114 &1029515643259809001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc912b9b0bb62e445b77725b2a044d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckSize: 100
+  deckSize: 20
   cardTargetPoints: 10
   maxLettersPerSide: 4
   generatedDeck: {fileID: 11400000, guid: 64e271799c79ac449bdb6f4af7c30b16, type: 2}
