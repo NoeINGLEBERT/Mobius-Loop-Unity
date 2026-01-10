@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bc533c978f2a645a526857a23eeb59, type: 3}
+  m_Name: Cake
+  m_EditorClassIdentifier: 
+  dialogues:
+  - speaker: 5
+    dialogueText: A mysterious cake labelled "EAT me"
+    choicesTexts:
+    - '[EAT]'
+    - '[!]'
+    - Leave
+    answersIndexes: 010000000400000005000000
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 1
+    dialogueText: "My goodness\u2026 I feel terribly funny. Not dizzy\u2026 just
+      different."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 4
+    dialogueText: '[EFFECT]'
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 1
+    dialogueText: "Oh my! I\u2019m growing again! That never ends quite where I expect
+      it to\u2026"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 1
+    dialogueText: "That doesn\u2019t seem to be the right thing, does it?"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 1
+    dialogueText: "It does look tempting\u2026 but I\u2019ve grown rather wary of
+      cakes in this place."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 

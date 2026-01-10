@@ -9,7 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd922b584c4f7124eacc8cc44e284854, type: 3}
-  m_Name: PlayerData
+  m_Script: {fileID: 11500000, guid: e5064c1e93476b342b4c0fc97cb4f81e, type: 3}
+  m_Name: RabbitRewards
   m_EditorClassIdentifier: 
-  cellIndex: 1472
+  cards:
+  - _frontFace:
+    - K
+    - E
+    - Y
+    _backFace: []
+    _isFront: 1
+    _frontSuit: 4
+    _backSuit: 2

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 [System.Serializable]
 public struct Reaction
@@ -31,6 +32,17 @@ public class DialogueComponent : MonoBehaviour
 
     [Header("Reactions")]
     [SerializeField] private List<ReactionEntry> reactions = new();
+
+    [Header("Dialogue Effects")]
+    [SerializeField] private MonoBehaviour effectBehaviour;
+
+    private ICellEffect dialogueEffect;
+
+    private void Awake()
+    {
+        if (effectBehaviour != null)
+            dialogueEffect = effectBehaviour as ICellEffect;
+    }
 
     #region Dialogue Flow
 
@@ -123,6 +135,22 @@ public class DialogueComponent : MonoBehaviour
 
         DialogueEntry currentDialogue = GetDialogueFromIndex(currentIndex);
 
+        // =========================
+        // EFFECT DIALOGUE
+        // =========================
+        if (currentDialogue.dialogueText == "[EFFECT]")
+        {
+            if (dialogueEffect != null)
+            {
+                StartCoroutine(PlayEffectAndResume());
+                return;
+            }
+            else
+            {
+                Debug.LogWarning("[Dialogue] EFFECT tag found but no effect assigned.");
+            }
+        }
+
         DialogueManager.Instance.currentDialogueComponent = this;
 
         Speaker currentSpeaker = DialogueManager.Instance.speakers[currentDialogue.speaker];
@@ -156,6 +184,22 @@ public class DialogueComponent : MonoBehaviour
             }
         }
 
+    }
+
+    private IEnumerator PlayEffectAndResume()
+    {
+        // Block dialogue skip input while effect runs
+        DialogueManager.Instance.OnDialogueSkipped -= PlayDialogue;
+
+        Pawn pawn = FindFirstObjectByType<PlayerActor>().GetComponent<Pawn>(); // or however you resolve player
+
+        yield return dialogueEffect.Activate(pawn);
+
+        // Advance dialogue index AFTER effect
+        currentIndex++;
+
+        // Resume dialogue normally
+        PlayDialogue();
     }
 
     #endregion

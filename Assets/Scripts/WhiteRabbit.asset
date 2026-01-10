@@ -28,7 +28,7 @@ MonoBehaviour:
     - '[FAN]'
     - '[!]'
     - No, I have nothing
-    answersIndexes: 02000000040000000700000008000000
+    answersIndexes: 02000000040000000800000009000000
     dialogueEnd: 0
     eventName: 
   - speaker: 2
@@ -53,6 +53,12 @@ MonoBehaviour:
     choicesTexts: []
     answersIndexes: 
     dialogueEnd: 0
+    eventName: 
+  - speaker: 2
+    dialogueText: '[EFFECT]'
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
     eventName: 
   - speaker: 2
     dialogueText: Now, with this curious little contraption in hand, it should help

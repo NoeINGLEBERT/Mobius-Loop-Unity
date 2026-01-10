@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bc533c978f2a645a526857a23eeb59, type: 3}
+  m_Name: Door
+  m_EditorClassIdentifier: 
+  dialogues:
+  - speaker: 6
+    dialogueText: "Oh! A visitor. How unexpected\u2026 and rather inconvenient."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: MEET_DOOR
+  - speaker: 6
+    dialogueText: "I do hope you haven\u2019t come expecting to simply walk through.
+      That would be most improper."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: "If you wish to pass, you\u2019ll need to present the proper\u2026
+      something. I cannot open for just anyone, you understand."
+    choicesTexts:
+    - '[KEY]'
+    - '[!]'
+    - I don't have it...
+    answersIndexes: 05000000060000000a000000
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: Back already? How persistent.
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: "If you wish to pass, you\u2019ll need to present the proper\u2026
+      something. I cannot open for just anyone, you understand."
+    choicesTexts:
+    - '[EFFECT]'
+    - '[!]'
+    - I don't have it...
+    answersIndexes: 05000000060000000a000000
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: '[EFFECT]'
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 1
+    dialogueText: "Is this\u2026 what you\u2019re looking for?"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: "\u2026No."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: "That simply will not do. Close, perhaps, in spirit\u2014but entirely
+      wrong in practice."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: I suggest you reconsider. I will not open for that.
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 6
+    dialogueText: Oh. How unfortunate.
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: "Still, not knowing doesn\u2019t change anything. I cannot open
+      for uncertainty."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 6
+    dialogueText: "Do come back once you\u2019ve found what\u2019s missing."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 

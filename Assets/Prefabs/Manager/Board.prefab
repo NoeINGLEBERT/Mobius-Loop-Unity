@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5929253367346116640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2733798707260369364}
+  - component: {fileID: -1363056476868153957}
+  m_Layer: 0
+  m_Name: Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2733798707260369364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929253367346116640}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1363056476868153957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929253367346116640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e60de5f6d27aa94bafbdeaf28958807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellNumber: 32
+  radius: 6
+  defaultCell: {fileID: 3084113361339212381, guid: a6b1687924c1a4a4294b137b531e81a7, type: 3}
+  firstCell: {fileID: 1767408386184871864, guid: b769a4671947f9c4a915a31934cefd80, type: 3}
+  specialCells:
+  - prefab: {fileID: 463263369809196519, guid: f660c7071e252e34faa32b5e8b0e4aa1, type: 3}
+    count: 4
+    randomness: 0.75
+  - prefab: {fileID: 463263369809196519, guid: c1a1af33d79b8bb4cb1f143f753cbc7c, type: 3}
+    count: 4
+    randomness: 0.75
+  - prefab: {fileID: 6114515634415619491, guid: dc5384c7fe4f7e24bb6f035963cbd648, type: 3}
+    count: 8
+    randomness: 1
+  - prefab: {fileID: 6114515634415619491, guid: 4b45933f96cc9d546b32bf21b0c70c95, type: 3}
+    count: 8
+    randomness: 1
+  cells: []

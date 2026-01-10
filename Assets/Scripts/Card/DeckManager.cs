@@ -12,7 +12,6 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private Transform handArea;
 
     [Header("Deck Setup")]
-    [SerializeField] private int handSize = 5;
     [SerializeField] private Deck deck;
 
     [Header("Draw Settings")]
@@ -63,7 +62,7 @@ public class DeckManager : MonoBehaviour
     private IEnumerator RefillHandDelayed()
     {
         // Draw missing cards one by one
-        while (handCards.Count < handSize)
+        while (handCards.Count < WordValidator.Instance.GetZoneCountForSize(WordValidator.Instance.currentSize))
         {
             if (!DrawOne())
                 break;

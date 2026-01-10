@@ -47,7 +47,7 @@ public class Symbol : MonoBehaviour
 
     public void StopPulse()
     {
-        if (pulseRoutine == null) return;
+        if (pulseRoutine == null | gameObject == null) return;
 
         StopCoroutine(pulseRoutine);
         pulseRoutine = null;

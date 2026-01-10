@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bc533c978f2a645a526857a23eeb59, type: 3}
+  m_Name: CheshireCat
+  m_EditorClassIdentifier: 
+  dialogues:
+  - speaker: 3
+    dialogueText: "Oh\u2026 hello there. Or perhaps goodbye? It\u2019s so hard to
+      tell at first meetings."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: MEET_CAT
+  - speaker: 3
+    dialogueText: "You\u2019re looking rather lost. Or perhaps something else is?
+      Something white, furry, and terribly flustered."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "He\u2019s always dropping things, you know. Important things.
+      Things he very much needs\u2026 but never notices until it\u2019s far too late."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "If I were you, I\u2019d keep my eyes open. Wonderland loves to
+      misplace what matters most."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 3
+    dialogueText: "Still wandering? How delightful. That usually means something
+      hasn\u2019t quite\u2026 clicked yet."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "Our hurried little Rabbit has been in a dreadful state. Rushing
+      here, fretting there\u2026 and leaving bits of himself behind wherever he goes."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "A fan here, a glove there\u2026 honestly, it\u2019s a wonder he
+      hasn\u2019t misplaced his whiskers."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "Help him find what he\u2019s lost, and you may find what you\u2019re
+      looking for as well. Or not. Wonderland does enjoy surprises."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "Well, well\u2026 look at that smile on your face. Or is that mine?"
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "The Rabbit\u2019s quite beside himself\u2014though, for once,
+      not because he\u2019s lost something."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "You see? In Wonderland, helping others often helps oneself\u2026
+      even if no one quite understands how."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 3
+    dialogueText: "Do be careful now. Doors open, paths twist, and things have a
+      habit of growing\u2026 or shrinking\u2026 when you least expect it."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 

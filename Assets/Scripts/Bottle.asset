@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bc533c978f2a645a526857a23eeb59, type: 3}
+  m_Name: Bottle
+  m_EditorClassIdentifier: 
+  dialogues:
+  - speaker: 4
+    dialogueText: A small bottle labelled "DRINK me"
+    choicesTexts:
+    - '[DRINK]'
+    - '[!]'
+    - Leave
+    answersIndexes: 010000000400000005000000
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 1
+    dialogueText: "Oh\u2026 that tasted rather odd. Not unpleasant, exactly\u2026
+      just very strange."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 4
+    dialogueText: '[EFFECT]'
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 0
+    eventName: 
+  - speaker: 1
+    dialogueText: "Oh! Oh dear\u2026 I\u2019m getting smaller\u2026 quite smaller
+      indeed. I do hope I haven\u2019t gone too far this time."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 1
+    dialogueText: "\u2026Nothing at all? How disappointing. I was certain something
+      would happen."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 
+  - speaker: 1
+    dialogueText: "Perhaps I should leave it for now. One can\u2019t be too careful
+      with mysterious bottles."
+    choicesTexts: []
+    answersIndexes: 
+    dialogueEnd: 1
+    eventName: 

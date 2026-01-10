@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class CardChoiceCellEffect : MonoBehaviour, ICellEffect
@@ -13,6 +14,9 @@ public class CardChoiceCellEffect : MonoBehaviour, ICellEffect
     [SerializeField] private int numberOfChoices = 3;
     [SerializeField] private float fadeDuration = 0.3f;
     [SerializeField] private int cardTargetPoints = 10;
+
+    [Header("Optional Deck Source")]
+    [SerializeField] private Deck deck;
 
     public IEnumerator Activate(Pawn pawn)
     {
@@ -55,7 +59,7 @@ public class CardChoiceCellEffect : MonoBehaviour, ICellEffect
         // Spawn new cards under the container
         for (int i = 0; i < numberOfChoices; i++)
         {
-            CardData data = deckGenerator.GenerateCard(cardTargetPoints);
+            CardData data = GetRandomCardData(deckGenerator);
 
             GameObject cardGO = Object.Instantiate(cardPrefab, container);
             Card card = cardGO.GetComponent<Card>();
@@ -113,5 +117,40 @@ public class CardChoiceCellEffect : MonoBehaviour, ICellEffect
             yield return null;
         }
         cg.alpha = to;
+    }
+
+    private CardData GetRandomCardData(DeckGenerator generator)
+    {
+        // =========================
+        // FALLBACK: RANDOM GENERATION
+        // =========================
+        if (deck == null || deck.cards.Length == 0)
+        {
+            return generator.GenerateCard(cardTargetPoints);
+        }
+
+        // =========================
+        // COLLECT FROM DECKS
+        // =========================
+        List<CardData> pool = new();
+
+        pool.AddRange(deck.cards);
+
+        // =========================
+        // SAFETY FALLBACK
+        // =========================
+        if (pool.Count == 0)
+        {
+            Debug.LogWarning(
+                "[CardChoiceCellEffect] Decks assigned but empty. Falling back to generation."
+            );
+            return generator.GenerateCard(cardTargetPoints);
+        }
+
+        // =========================
+        // RANDOM PICK (STRUCT COPY)
+        // =========================
+        int index = Random.Range(0, pool.Count);
+        return pool[index]; // value-type copy
     }
 }

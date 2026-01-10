@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 5051572498729476541}
   - component: {fileID: 8858614468137576749}
   - component: {fileID: 8007405652230286228}
+  - component: {fileID: 8729037866149309902}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Untagged
@@ -227,6 +228,8 @@ MonoBehaviour:
   startingIndex: 0
   currentIndex: 0
   lastEventPriority: 0
+  reactions: []
+  effectBehaviour: {fileID: 8729037866149309902}
 --- !u!114 &8007405652230286228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,3 +243,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueComponent: {fileID: 8858614468137576749}
+--- !u!114 &8729037866149309902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397483978516216611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27bbebd6350f05b4bb875fe5e3e33595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelPrefab: {fileID: 6490592924164484623, guid: 72a7d7edfad8fc148877c5690a5ac6ea, type: 3}
+  cardPrefab: {fileID: 9118003032914070108, guid: e3e30861191543c4b9034a1c634798ec, type: 3}
+  numberOfChoices: 1
+  fadeDuration: 0.3
+  cardTargetPoints: 10
+  deck: {fileID: 11400000, guid: 4261314e43a7403409676c35636aab4e, type: 2}

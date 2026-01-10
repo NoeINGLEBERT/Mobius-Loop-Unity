@@ -2,10 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerSize
+{
+    Small,
+    Normal,
+    Big
+}
+
 public class WordValidator : MonoBehaviour
 {
-    [Header("Setup")]
-    [SerializeField] private int zoneCount = 5;
+    public static WordValidator Instance { get; private set; }
+
+    [Header("Player Size")]
+    [SerializeField] public PlayerSize currentSize = PlayerSize.Normal;
+
+    [SerializeField] private int smallZoneCount = 3;
+    [SerializeField] private int normalZoneCount = 5;
+    [SerializeField] private int bigZoneCount = 7;
+
     [SerializeField] private DropZone zonePrefab;
     [SerializeField] private Transform zonesParent;
     [SerializeField] private string dictionaryFileName = "words.txt";
@@ -27,6 +41,13 @@ public class WordValidator : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         dictionary = new WordDictionary();
 
         string path = System.IO.Path.Combine(
@@ -35,7 +56,7 @@ public class WordValidator : MonoBehaviour
         );
         dictionary.LoadFromText(path);
 
-        CreateZones();
+        ResizeZones(GetZoneCountForSize(currentSize));
     }
 
     private void OnEnable()
@@ -60,15 +81,93 @@ public class WordValidator : MonoBehaviour
             zone.OnZoneChanged -= Validate;
     }
 
-    private void CreateZones()
+    private void CreateZones(int count)
     {
-        zones = new DropZone[zoneCount];
+        zones = new DropZone[count];
 
-        for (int i = 0; i < zoneCount; i++)
+        for (int i = 0; i < count; i++)
         {
             DropZone zone = Instantiate(zonePrefab, zonesParent);
             zones[i] = zone;
+            zone.OnZoneChanged += Validate;
         }
+    }
+
+    private void ResizeZones(int newCount)
+    {
+        // Cache existing cards
+        List<Card> existingCards = new();
+
+        if (zones != null)
+        {
+            foreach (DropZone zone in zones)
+            {
+                if (zone.HasCard())
+                    existingCards.Add(zone.GetCard());
+
+                zone.OnZoneChanged -= Validate;
+                Destroy(zone.gameObject);
+            }
+        }
+
+        // Create new zones
+        CreateZones(newCount);
+
+        // Re-assign cards that still fit
+        int assignCount = Mathf.Min(existingCards.Count, zones.Length);
+
+        for (int i = 0; i < assignCount; i++)
+        {
+            zones[i].SetCard(existingCards[i]);
+        }
+
+        // Handle overflow cards (shrinking case)
+        for (int i = assignCount; i < existingCards.Count; i++)
+        {
+            existingCards[i].Discard(); // or Destroy(), depending on design
+        }
+
+        Validate();
+    }
+
+    public int GetZoneCountForSize(PlayerSize size)
+    {
+        return size switch
+        {
+            PlayerSize.Small => smallZoneCount,
+            PlayerSize.Big => bigZoneCount,
+            _ => normalZoneCount
+        };
+    }
+
+    public void Shrink()
+    {
+        if (currentSize == PlayerSize.Small)
+            return;
+
+        currentSize = currentSize switch
+        {
+            PlayerSize.Big => PlayerSize.Normal,
+            PlayerSize.Normal => PlayerSize.Small,
+            _ => currentSize
+        };
+
+        ResizeZones(GetZoneCountForSize(currentSize));
+    }
+
+    public void Grow()
+    {
+        if (currentSize == PlayerSize.Big)
+            return;
+
+        currentSize = currentSize switch
+        {
+            PlayerSize.Small => PlayerSize.Normal,
+            PlayerSize.Normal => PlayerSize.Big,
+            _ => currentSize
+        };
+
+        ResizeZones(GetZoneCountForSize(currentSize));
     }
 
     /// Called automatically when any zone changes
