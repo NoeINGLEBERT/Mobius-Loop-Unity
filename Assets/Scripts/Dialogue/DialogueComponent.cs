@@ -38,6 +38,8 @@ public class DialogueComponent : MonoBehaviour
 
     private ICellEffect dialogueEffect;
 
+    private Coroutine bindCoroutine;
+
     private void Awake()
     {
         if (effectBehaviour != null)
@@ -48,18 +50,43 @@ public class DialogueComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        if (DialogueManager.Instance != null)
-            DialogueManager.Instance.OnNotifyEvent += HandleEventNotify;
+        bindCoroutine = StartCoroutine(WaitAndBind());
     }
 
     private void OnDisable()
     {
+        if (bindCoroutine != null)
+        {
+            StopCoroutine(bindCoroutine);
+            bindCoroutine = null;
+        }
+
         if (DialogueManager.Instance != null)
+        {
             DialogueManager.Instance.OnNotifyEvent -= HandleEventNotify;
+            Debug.Log($"[DialogueComponent] Unbound from DialogueManager on {gameObject.name}");
+        }
+    }
+
+    private IEnumerator WaitAndBind()
+    {
+        Debug.Log($"[DialogueComponent] Waiting for DialogueManager on {gameObject.name}");
+
+        yield return new WaitUntil(() =>
+            DialogueManager.Instance != null &&
+            DialogueManager.Instance.Events != null &&
+            DialogueManager.Instance.speakers != null
+        );
+
+        DialogueManager.Instance.OnNotifyEvent += HandleEventNotify;
+
+        Debug.Log($"[DialogueComponent] Successfully bound to DialogueManager on {gameObject.name}");
     }
 
     public void HandleEventNotify(string Event)
     {
+        Debug.Log(Event);
+
         foreach (ReactionEntry entry in reactions)
         {
             bool triggerReaction = false;
