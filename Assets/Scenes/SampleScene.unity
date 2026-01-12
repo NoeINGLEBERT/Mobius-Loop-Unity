@@ -3879,6 +3879,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1363056476868153957, guid: a96423c386caa6b45a2afd2e013e42f1, type: 3}
+      propertyPath: specialCells.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1363056476868153957, guid: a96423c386caa6b45a2afd2e013e42f1, type: 3}
+      propertyPath: specialCells.Array.data[4].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1363056476868153957, guid: a96423c386caa6b45a2afd2e013e42f1, type: 3}
+      propertyPath: specialCells.Array.data[4].prefab
+      value: 
+      objectReference: {fileID: 1767408386184871864, guid: e340578ce8b4b79439c2f5f952a813a2, type: 3}
+    - target: {fileID: -1363056476868153957, guid: a96423c386caa6b45a2afd2e013e42f1, type: 3}
+      propertyPath: specialCells.Array.data[4].randomness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2733798707260369364, guid: a96423c386caa6b45a2afd2e013e42f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

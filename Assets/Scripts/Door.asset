@@ -46,7 +46,7 @@ MonoBehaviour:
     dialogueText: "If you wish to pass, you\u2019ll need to present the proper\u2026
       something. I cannot open for just anyone, you understand."
     choicesTexts:
-    - '[EFFECT]'
+    - '[KEY]'
     - '[!]'
     - I don't have it...
     answersIndexes: 05000000060000000a000000

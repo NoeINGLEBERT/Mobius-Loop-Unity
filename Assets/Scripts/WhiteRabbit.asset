@@ -53,7 +53,7 @@ MonoBehaviour:
     choicesTexts: []
     answersIndexes: 
     dialogueEnd: 0
-    eventName: 
+    eventName: HELPED_RABBIT
   - speaker: 2
     dialogueText: '[EFFECT]'
     choicesTexts: []

@@ -56,7 +56,7 @@ MonoBehaviour:
     dialogueEnd: 0
     eventName: 
   - speaker: 3
-    dialogueText: "A fan here, a glove there\u2026 honestly, it\u2019s a wonder he
+    dialogueText: "A FAN here, a GLOVE there\u2026 honestly, it\u2019s a wonder he
       hasn\u2019t misplaced his whiskers."
     choicesTexts: []
     answersIndexes: 
@@ -67,7 +67,7 @@ MonoBehaviour:
       looking for as well. Or not. Wonderland does enjoy surprises."
     choicesTexts: []
     answersIndexes: 
-    dialogueEnd: 0
+    dialogueEnd: 1
     eventName: 
   - speaker: 3
     dialogueText: "Well, well\u2026 look at that smile on your face. Or is that mine?"
