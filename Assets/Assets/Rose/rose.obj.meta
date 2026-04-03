@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: e6783568718e26f45ae8825b2b1c1bd3
+guid: 5335d1afe84cb054b8163c3a5614fe2b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Child02_0.001
-    second: {fileID: 2100000, guid: f7d63d17863c10741803cb98c8a6eb57, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Child02_Braids_0
-    second: {fileID: 2100000, guid: 698d3385b03675e4fa67a0f124a11711, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 27318ca8988a47044aaa26ae8fa2e298, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
