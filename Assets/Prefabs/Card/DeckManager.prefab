@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5462327530506875878}
-  - component: {fileID: 4698113369189867984}
   - component: {fileID: 1029515643259809001}
+  - component: {fileID: 4698113369189867984}
+  - component: {fileID: 6024512815856129111}
   m_Layer: 0
   m_Name: DeckManager
   m_TagString: Untagged
@@ -33,27 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4698113369189867984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703081504788920433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a70f34b840e4534bb728192e65e6eed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 9118003032914070108, guid: e3e30861191543c4b9034a1c634798ec, type: 3}
-  handArea: {fileID: 0}
-  handSize: 5
-  deck: {fileID: 11400000, guid: 64e271799c79ac449bdb6f4af7c30b16, type: 2}
-  refillDelay: 0.25
-  drawInterval: 0.1
-  deckCountText: {fileID: 0}
-  discardCountText: {fileID: 0}
-  sanityText: {fileID: 0}
 --- !u!114 &1029515643259809001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,3 +50,35 @@ MonoBehaviour:
   cardTargetPoints: 10
   maxLettersPerSide: 4
   generatedDeck: {fileID: 11400000, guid: 64e271799c79ac449bdb6f4af7c30b16, type: 2}
+--- !u!114 &4698113369189867984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703081504788920433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a70f34b840e4534bb728192e65e6eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 9118003032914070108, guid: e3e30861191543c4b9034a1c634798ec, type: 3}
+  handArea: {fileID: 0}
+  deck: {fileID: 11400000, guid: 64e271799c79ac449bdb6f4af7c30b16, type: 2}
+  refillDelay: 0.25
+  drawInterval: 0.1
+  deckCountText: {fileID: 0}
+  discardCountText: {fileID: 0}
+  sanityText: {fileID: 0}
+--- !u!114 &6024512815856129111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703081504788920433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5f0141c54896e48bf26e26b3cf3648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

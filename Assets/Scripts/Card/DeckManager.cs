@@ -36,13 +36,13 @@ public class DeckManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
+
     }
 
     void Start()
     {
-        GetComponent<DeckGenerator>().GenerateDeck();
-
         drawPile.AddRange(deck.cards);
         Shuffle(drawPile);
 

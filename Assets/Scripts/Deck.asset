@@ -14,483 +14,441 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards:
   - _frontFace:
+    - L
+    - J
+    - E
+    _backFace:
+    - '-'
+    _isFront: 1
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - Y
     - O
+    _backFace:
+    - I
+    - B
+    - L
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - W
+    - E
+    _backFace:
+    - C
+    - I
+    - O
+    _isFront: 1
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - Q
+    _backFace:
+    - '-'
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - R
+    - E
+    _backFace:
+    - H
+    - F
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 3
+  - _frontFace:
+    - O
+    - L
+    - D
+    _backFace:
+    - T
+    - E
+    - I
+    - M
+    _isFront: 1
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - V
+    - W
+    - L
+    _backFace:
+    - N
+    _isFront: 0
+    _frontSuit: 3
+    _backSuit: 1
+  - _frontFace:
+    - N
+    - W
+    _backFace:
+    - A
+    - L
+    - M
+    _isFront: 1
+    _frontSuit: 3
+    _backSuit: 2
+  - _frontFace:
+    - '-'
+    _backFace:
+    - K
+    - F
+    - I
+    _isFront: 0
+    _frontSuit: 2
+    _backSuit: 3
+  - _frontFace:
+    - C
+    - E
+    _backFace:
+    - V
+    - D
+    _isFront: 0
+    _frontSuit: 3
+    _backSuit: 2
+  - _frontFace:
+    - M
+    - L
+    _backFace:
+    - K
+    - I
+    _isFront: 0
+    _frontSuit: 3
+    _backSuit: 1
+  - _frontFace:
+    - I
+    - S
+    - A
+    _backFace:
+    - Y
+    - B
+    _isFront: 1
+    _frontSuit: 3
+    _backSuit: 2
+  - _frontFace:
+    - G
+    _backFace:
+    - W
+    - V
+    _isFront: 1
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - W
+    _backFace:
+    - C
+    - B
+    _isFront: 1
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - K
+    - M
+    - T
+    _backFace:
+    - L
+    _isFront: 0
+    _frontSuit: 2
+    _backSuit: 3
+  - _frontFace:
+    - E
+    - T
+    _backFace:
+    - H
+    - F
+    _isFront: 1
+    _frontSuit: 4
+    _backSuit: 2
+  - _frontFace:
+    - '-'
     _backFace:
     - J
-    - L
-    _isFront: 1
-    _frontSuit: 4
-    _backSuit: 1
-  - _frontFace:
-    - N
-    _backFace:
-    - W
-    - U
-    - V
-    _isFront: 1
-    _frontSuit: 4
-    _backSuit: 2
-  - _frontFace:
-    - D
-    - W
-    - U
-    _backFace:
-    - C
+    - G
     _isFront: 0
     _frontSuit: 3
     _backSuit: 2
   - _frontFace:
-    - '-'
-    _backFace:
-    - Z
-    _isFront: 0
-    _frontSuit: 1
-    _backSuit: 4
-  - _frontFace:
-    - O
-    - M
-    - I
-    - L
-    _backFace:
-    - S
-    - N
-    - G
-    _isFront: 1
-    _frontSuit: 1
-    _backSuit: 4
-  - _frontFace:
-    - F
-    - U
+    - J
     _backFace:
     - R
-    - I
-    - G
     - E
     _isFront: 0
     _frontSuit: 1
     _backSuit: 3
-  - _frontFace:
-    - E
-    - M
-    - N
-    _backFace:
-    - D
-    - L
-    - O
-    - R
-    _isFront: 0
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - L
-    - D
-    - S
-    _backFace:
-    - F
-    - O
-    - A
-    _isFront: 1
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - Z
-    _backFace:
-    - '-'
-    _isFront: 1
-    _frontSuit: 3
-    _backSuit: 2
-  - _frontFace:
-    - U
-    - N
-    - Y
-    _backFace:
-    - B
-    - S
-    _isFront: 1
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - V
-    _backFace:
-    - O
-    - C
-    - U
-    - E
-    _isFront: 0
-    _frontSuit: 3
-    _backSuit: 1
-  - _frontFace:
-    - '-'
-    _backFace:
-    - Z
-    _isFront: 1
-    _frontSuit: 3
-    _backSuit: 2
-  - _frontFace:
-    - E
-    - B
-    - I
-    _backFace:
-    - S
-    - G
-    - T
-    - N
-    _isFront: 1
-    _frontSuit: 3
-    _backSuit: 2
-  - _frontFace:
-    - Z
-    _backFace:
-    - '-'
-    _isFront: 0
-    _frontSuit: 3
-    _backSuit: 2
-  - _frontFace:
-    - T
-    - G
-    _backFace:
-    - W
-    - N
-    - D
-    _isFront: 1
-    _frontSuit: 2
-    _backSuit: 3
-  - _frontFace:
-    - R
-    - U
-    _backFace:
-    - F
-    - H
-    _isFront: 0
-    _frontSuit: 1
-    _backSuit: 4
-  - _frontFace:
-    - R
-    _backFace:
-    - X
-    - L
-    _isFront: 1
-    _frontSuit: 2
-    _backSuit: 3
-  - _frontFace:
-    - P
-    _backFace:
-    - B
-    - F
-    _isFront: 0
-    _frontSuit: 1
-    _backSuit: 4
-  - _frontFace:
-    - R
-    - U
-    - T
-    _backFace:
-    - E
-    - F
-    - L
-    - S
-    _isFront: 0
-    _frontSuit: 2
-    _backSuit: 4
-  - _frontFace:
-    - W
-    - G
-    _backFace:
-    - S
-    - B
-    _isFront: 1
-    _frontSuit: 2
-    _backSuit: 4
-  - _frontFace:
-    - H
-    - B
-    - R
-    _backFace:
-    - I
-    - A
-    _isFront: 1
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - A
-    - U
-    - L
-    _backFace:
-    - V
-    - G
-    - R
-    _isFront: 1
-    _frontSuit: 3
-    _backSuit: 2
-  - _frontFace:
-    - O
-    - G
-    - B
-    - F
-    _backFace:
-    - '-'
-    _isFront: 0
-    _frontSuit: 3
-    _backSuit: 2
-  - _frontFace:
-    - T
-    - N
-    _backFace:
-    - F
-    - V
-    _isFront: 1
-    _frontSuit: 4
-    _backSuit: 1
-  - _frontFace:
-    - A
-    - I
-    _backFace:
-    - M
-    - P
-    - L
-    - O
-    _isFront: 0
-    _frontSuit: 4
-    _backSuit: 1
-  - _frontFace:
-    - K
-    - Y
-    _backFace:
-    - S
-    _isFront: 1
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - D
-    - R
-    - C
-    - I
-    _backFace:
-    - P
-    _isFront: 1
-    _frontSuit: 2
-    _backSuit: 4
-  - _frontFace:
-    - '-'
-    _backFace:
-    - X
-    - D
-    _isFront: 1
-    _frontSuit: 4
-    _backSuit: 1
-  - _frontFace:
-    - H
-    - O
-    - I
-    _backFace:
-    - N
-    - D
-    - S
-    _isFront: 0
-    _frontSuit: 2
-    _backSuit: 4
-  - _frontFace:
-    - D
-    - O
-    - I
-    - L
-    _backFace:
-    - Y
-    - U
-    _isFront: 0
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - O
-    _backFace:
-    - U
-    - C
-    - K
-    _isFront: 0
-    _frontSuit: 2
-    _backSuit: 3
-  - _frontFace:
-    - R
-    - A
-    _backFace:
-    - N
-    - L
-    - C
-    - M
-    _isFront: 0
-    _frontSuit: 3
-    _backSuit: 1
-  - _frontFace:
-    - I
-    - D
-    _backFace:
-    - M
-    - E
-    - S
-    - G
-    _isFront: 1
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - N
-    - S
-    _backFace:
-    - V
-    - B
-    - E
-    _isFront: 1
-    _frontSuit: 4
-    _backSuit: 2
-  - _frontFace:
-    - I
-    - R
-    - L
-    - D
-    _backFace:
-    - S
-    - V
-    _isFront: 0
-    _frontSuit: 4
-    _backSuit: 1
-  - _frontFace:
-    - N
-    - Y
-    - L
-    - P
-    _backFace:
-    - S
-    _isFront: 1
-    _frontSuit: 1
-    _backSuit: 3
-  - _frontFace:
-    - '-'
-    _backFace:
-    - O
-    - X
-    - T
-    _isFront: 1
-    _frontSuit: 4
-    _backSuit: 1
-  - _frontFace:
-    - X
-    _backFace:
-    - G
-    _isFront: 0
-    _frontSuit: 3
-    _backSuit: 2
-  - _frontFace:
-    - I
-    - S
-    - L
-    - N
-    _backFace:
-    - U
-    - W
-    - A
-    _isFront: 0
-    _frontSuit: 1
-    _backSuit: 4
-  - _frontFace:
-    - M
-    _backFace:
-    - F
-    - C
-    _isFront: 0
-    _frontSuit: 2
-    _backSuit: 4
   - _frontFace:
     - '-'
     _backFace:
     - Q
     _isFront: 0
-    _frontSuit: 3
-    _backSuit: 2
+    _frontSuit: 2
+    _backSuit: 4
   - _frontFace:
-    - Y
+    - W
+    _backFace:
     - N
+    - K
+    _isFront: 0
+    _frontSuit: 4
+    _backSuit: 1
+  - _frontFace:
+    - O
+    - V
+    - Y
+    - U
+    _backFace:
+    - '-'
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - J
+    - R
     _backFace:
     - O
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
     - C
     - T
+    - S
+    - R
+    _backFace:
+    - F
     _isFront: 1
-    _frontSuit: 3
-    _backSuit: 2
+    _frontSuit: 1
+    _backSuit: 3
   - _frontFace:
+    - P
+    - H
+    _backFace:
+    - B
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - M
+    - P
+    - S
+    _backFace:
+    - I
     - T
     - A
-    - N
+    _isFront: 0
+    _frontSuit: 4
+    _backSuit: 2
+  - _frontFace:
+    - O
+    - M
     - L
+    - S
+    _backFace:
+    - N
+    - C
+    _isFront: 0
+    _frontSuit: 4
+    _backSuit: 2
+  - _frontFace:
+    - B
+    - D
+    - C
+    _backFace:
+    - G
+    _isFront: 0
+    _frontSuit: 2
+    _backSuit: 3
+  - _frontFace:
+    - L
+    - G
+    _backFace:
+    - E
+    - W
+    - R
+    - N
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - '-'
+    _backFace:
+    - Z
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - S
+    _backFace:
+    - B
+    - F
+    - R
+    - T
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - O
+    - E
     _backFace:
     - P
-    - R
-    - O
+    - T
+    - I
+    - M
+    _isFront: 0
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - P
+    _backFace:
+    - B
+    - V
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 3
+  - _frontFace:
+    - '-'
+    _backFace:
+    - J
     - S
+    - I
+    _isFront: 0
+    _frontSuit: 4
+    _backSuit: 1
+  - _frontFace:
+    - '-'
+    _backFace:
+    - F
+    - D
+    - S
+    - P
+    _isFront: 1
+    _frontSuit: 2
+    _backSuit: 4
+  - _frontFace:
+    - '-'
+    _backFace:
+    - Z
+    _isFront: 0
+    _frontSuit: 3
+    _backSuit: 1
+  - _frontFace:
+    - H
+    - R
+    - E
+    _backFace:
+    - C
+    - S
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - Y
+    _backFace:
+    - L
+    - R
+    - F
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - C
+    - I
+    - S
+    - T
+    _backFace:
+    - G
+    - N
+    - L
     _isFront: 0
     _frontSuit: 3
     _backSuit: 2
   - _frontFace:
-    - O
-    - P
-    - L
+    - T
+    - H
     _backFace:
-    - E
-    - B
-    - I
-    _isFront: 1
-    _frontSuit: 4
+    - F
+    - N
+    _isFront: 0
+    _frontSuit: 3
     _backSuit: 1
   - _frontFace:
-    - R
-    - G
-    - T
+    - S
+    - L
     _backFace:
-    - B
-    - D
-    - I
+    - N
+    - K
+    - T
+    - E
     _isFront: 1
-    _frontSuit: 3
+    _frontSuit: 4
     _backSuit: 2
   - _frontFace:
-    - E
-    - F
-    - Y
+    - '-'
     _backFace:
-    - T
+    - Y
+    - V
+    - S
+    - E
+    _isFront: 0
+    _frontSuit: 1
+    _backSuit: 3
+  - _frontFace:
+    - W
+    _backFace:
+    - E
+    - L
+    - Y
+    _isFront: 0
+    _frontSuit: 4
+    _backSuit: 2
+  - _frontFace:
+    - D
+    - E
+    - S
+    _backFace:
+    - A
+    - H
+    - L
     _isFront: 0
     _frontSuit: 2
     _backSuit: 4
   - _frontFace:
     - V
+    - T
+    - E
+    - U
     _backFace:
-    - M
+    - N
     - R
-    - G
+    - L
     _isFront: 0
     _frontSuit: 3
     _backSuit: 1
   - _frontFace:
-    - L
-    - S
-    _backFace:
     - P
-    - K
+    - B
+    - M
+    _backFace:
+    - S
+    _isFront: 1
+    _frontSuit: 1
+    _backSuit: 4
+  - _frontFace:
+    - F
+    - D
+    _backFace:
+    - B
+    - L
     _isFront: 0
     _frontSuit: 4
     _backSuit: 2
   - _frontFace:
-    - E
-    - W
-    _backFace:
-    - P
-    - S
+    - C
     - I
-    _isFront: 1
-    _frontSuit: 2
-    _backSuit: 4
-  - _frontFace:
-    - Q
+    - R
     _backFace:
-    - '-'
+    - W
+    - S
     _isFront: 1
-    _frontSuit: 2
-    _backSuit: 3
+    _frontSuit: 1
+    _backSuit: 4
