@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Labyrinth.unity
     guid: 1fc3864a5c403454bb622bf476ced1db
+  - enabled: 1
+    path: Assets/Scenes/Cups.unity
+    guid: bc513a9e8db85034f81d2ec1e1714710
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
